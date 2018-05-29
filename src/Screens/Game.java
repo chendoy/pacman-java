@@ -21,19 +21,12 @@ public class Game extends JFrame {
 
         add(new Board());
 
-        setTitle("Pacman");
+        setTitle("PAC-MAN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 800);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-
-        EventQueue.invokeLater(() -> {
-            Game ex = new Game();
-            ex.setVisible(true);
-        });
-    }
 
 }
