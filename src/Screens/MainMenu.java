@@ -14,8 +14,6 @@ public class MainMenu extends JFrame implements ActionListener {
         super("PAC-MAN");
 
         ImageIcon icon = new ImageIcon("src\\Resources\\icon.png");
-
-
         this.setIconImage(icon.getImage());
 
         playGame=new JButton("Play");

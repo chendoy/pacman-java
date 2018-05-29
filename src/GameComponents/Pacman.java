@@ -1,4 +1,8 @@
 package GameComponents;
 
-public class Pacman {
+import javax.swing.*;
+
+public class Pacman extends JFrame{
+
+
 }
