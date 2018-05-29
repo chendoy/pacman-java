@@ -11,10 +11,15 @@ public class MainMenu extends JFrame implements ActionListener {
     public JButton exitGame;
 
     public MainMenu() {
-        super("Pac-man");
+        super("PAC-MAN");
 
-        playGame=new JButton("Play Screens.Game");
-        exitGame=new JButton("Exit Screens.Game");
+        ImageIcon icon = new ImageIcon("src\\Resources\\icon.png");
+
+
+        this.setIconImage(icon.getImage());
+
+        playGame=new JButton("Play");
+        exitGame=new JButton("Exit");
         playGame.addActionListener(this);
         exitGame.addActionListener(this);
 
