@@ -18,7 +18,7 @@ public class Board extends JPanel implements ActionListener {
     private boolean dying=false;
 
     private final int BLOCK_SIZE=25;
-    private final int N_BLOCKS=26;
+    private final int N_BLOCKS=32;
     private final int SCREEN_SIZE=N_BLOCKS*BLOCK_SIZE;
     private final int PAC_ANIM_DELAY=2;
     private final int PACMAN_ANIM_COUNT = 3;
@@ -33,6 +33,8 @@ public class Board extends JPanel implements ActionListener {
     private int[] dx, dy;
     private int[] ghost_x, ghost_y, ghost_dx, ghost_dy, ghostSpeed;
 
+    final static int UP=0,DOWN=1,LEFT=2,RIGHT=3;
+
     private Image ghost;
     private Image pacman1, pacman2up, pacman2left, pacman2right, pacman2down;
     private Image pacman3up, pacman3down, pacman3left, pacman3right;
@@ -41,43 +43,65 @@ public class Board extends JPanel implements ActionListener {
     private int pacman_x, pacman_y, pacmand_x, pacmand_y;
     private int req_dx, req_dy, view_dx, view_dy;
 
-    private final short levelData[] = {
-            19, 26, 26, 26, 26, 18, 26, 26, 26, 26, 26, 22, 1,  4,  19, 26, 26, 26, 26, 26, 18, 26, 26, 26, 26, 22,
-            21, 3,  2,  2,  6,  21, 3,  2,  2,  2,  6,  21, 1,  4,  21, 3,  2,  2,  2,  6,  21, 3,  2,  2,  6,  21,
-            21, 1,  0,  0,  4,  21, 1,  0,  0,  0,  4,  21, 1,  4,  21, 1,  0,  0,  0,  4,  21, 1,  0,  0,  4,  21,
-            21, 9,  8,  8,  12, 21, 9,  8,  8,  8,  12, 21, 1,  4,  21, 9,  8,  8,  8,  12, 21, 9,  8,  8,  12, 21,
-            17, 26, 26, 26, 26, 16, 26, 26, 18, 26, 26, 24, 26, 26, 24, 26, 26, 18, 26, 26, 16, 26, 26, 26, 26, 20,
-            21, 3,  2,  2,  6,  21, 3,  6,  21, 3,  2,  2,  2,  2,  2,  2,  6,  21, 3,  6,  21, 3,  2,  2,  6,  21,
-            21, 9,  8,  8,  12, 21, 1,  4,  21, 9,  8,  8,  0,  0,  8,  8,  12, 21, 1,  4,  21, 9,  8,  8,  12, 21,
-            25, 26, 26, 26, 26, 20, 1,  4,  25, 26, 26, 22, 1,  4,  19, 26, 26, 28, 1,  4,  17, 26, 26, 26, 26, 28,
-            2,  2,  2,  2,  6,  21, 1,  0,  2,  2,  6,  21, 1,  4,  21, 3,  2,  2,  0,  4,  21, 3,  2,  2,  2,  2,
-            0,  0,  0,  0,  4,  21, 1,  8,  8,  8,  12, 21, 1,  4,  21, 9,  8,  8,  8,  4,  21, 1,  0,  0,  0,  0,
-            0,  0,  0,  0,  4,  21, 5,  19, 26, 26, 26, 24, 26, 26, 24, 26, 26, 26, 22, 5,  21, 1,  0,  0,  0,  0,
-            0,  0,  0,  0,  4,  21, 5,  21, 3,  2,  2,  2,  2,  2,  2,  2,  2,  6,  21, 5,  21, 1,  0,  0,  0,  0,
-            0,  0,  0,  0,  4,  21, 5,  21, 1,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21, 5,  21, 1,  0,  0,  0,  0,
-            0,  0,  0,  0,  4,  21, 5,  21, 1,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21, 5,  21, 1,  0,  0,  0,  0,
-            0,  0,  0,  0,  4,  21, 5,  21, 9,  8,  8,  8,  8,  8,  8,  8,  8,  12, 21, 5,  21, 1,  0,  0,  0,  0,
-            0,  0,  0,  0,  4,  21, 5,  25, 26, 26, 26, 18, 26, 26, 18, 26, 26, 26, 28, 5,  21, 1,  0,  0,  0,  0,
-            0,  0,  0,  0,  4,  21, 1,  2,  2,  2,  6,  21, 1,  4,  21, 3,  2,  2,  2,  4,  21, 1,  0,  0,  0,  0,
-            8,  8,  8,  8,  12, 21, 1,  0,  8,  8,  12, 21, 1,  4,  21, 9,  8,  8,  0,  4,  21, 9,  8,  8,  8,  8,
-            19, 26, 26, 26, 26, 20, 1,  4,  19, 26, 26, 28, 1,  4,  25, 26, 26, 22, 1,  4,  17, 26, 26, 26, 26, 22,
-            21, 3,  2,  2,  6,  21, 1,  4,  21, 3,  2,  2,  0,  0,  2,  2,  6,  21, 1,  4,  21, 3,  2,  2,  6,  21,
-            21, 9,  8,  8,  12, 21, 9,  12, 21, 9,  8,  8,  8,  8,  8,  8,  12, 21, 9,  12, 21, 9,  8,  8,  12, 21,
-            17, 26, 26, 26, 26, 16, 26, 26, 24, 26, 26, 18, 26, 26, 18, 26, 26, 24, 26, 26, 16, 26, 26, 26, 26, 20,
-            21, 3,  2,  2,  6,  21, 3,  2,  2,  2,  6,  21, 1,  4,  21, 3,  2,  2,  2,  6,  21, 3,  2,  2,  6,  21,
-            21, 1,  0,  0,  4,  21, 1,  0,  0,  0,  4,  21, 1,  4,  21, 1,  0,  0,  0,  4,  21, 1,  0,  0,  4,  21,
-            21, 9,  8,  8,  12, 21, 9,  8,  8,  8,  12, 21, 1,  4,  21, 9,  8,  8,  8,  12, 21, 9,  8,  8,  12, 21,
-            25, 26, 26, 26, 26, 24, 26, 26, 26, 26, 26, 28, 1,  4,  25, 26, 26, 26, 26, 26, 24, 26, 26, 26, 26, 28,
+    private final short board1Data[] = {
+            19, 26, 26, 26, 26, 18, 26, 26, 26, 26, 26, 26, 27,  22,  1, 0, 0, 4, 19, 26, 26, 26, 26, 26, 26, 26, 18, 26, 26, 26, 26, 22,
+            21, 3,  2,  2,  6,  21, 3,  2,  2,  2,  2,  2,  6,   21,  1, 0, 0, 4, 21, 3,  2,  2,  2,  2,  2,  3,  21, 6,  2,  2,  3,  21,
+            21, 1,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  4,   21,  1, 0, 0, 4, 21, 1,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  4,  21,
+            21, 9,  8,  8,  12, 21, 1,  0,  0,  0,  0,  0,  4,   21,  1, 0, 0, 4, 21, 1,  0,  0,  0,  0,  0,  4,  21, 9,  8,  8,  12, 21,
+            17, 26, 26, 26, 26, 20, 9,  8,  8,  8,  8,  8,  12,  21,  9, 8, 8, 12,21, 9,  8,  8,  8,  8,  8,  12, 17, 26, 26, 26, 26, 20,
+            21, 3,  2,  2,  6,  17, 26, 26, 26, 26, 18, 26, 26,  24,  26,26,26,26,24, 26, 26, 18, 26, 26, 26, 26, 20, 3,  2,  2,  6,  21,
+            21, 1,  0,  0,  4,  21, 3,  2,  2,  6,  21, 3,  2,   2,   2, 2, 2, 2, 2,  2,  9,  21, 3,  2,  2,  6,  21, 1,  0,  0,  4,  21,
+            21, 1, 0,0,4,21,1,0,0,4,21,1,0,0,0,0,0,0,0,0,4,21,1,0,0,4,21,1,0,0,4,21,
+            21,9,8,8,12,21,1,0,0,4,21,9,8,8,0,0,0,0,8,8,12,21,1,0,0,4,21,9,8,8,12,21,
+            25,26,26,26,26,20,1,0,0,4,25,26,26,22,1,0,0,4,19,26,26,28,1,0,0,4,17,26,26,26,26,28,
+            3,2,2,2,6,21,1,0,0,0,2,2,6,21,1,0,0,4,21,3,2,2,0,0,0,4,21,3,2,2,2,6,
+            1,0,0,0,4,21,1,0,0,8,8,8,12,21,9,8,8,12,21,9,8,8,8,0,0,4,21,1,0,0,0,4,
+            1,0,0,0,4,21,1,0,4,19,26,26,26,22,26,26,26,26,22,26,26,26,22,1,0,4,21,1,0,0,0,4,
+            1,0,0,0,4,21,1,0,4,21,3,2,2,2,2,2,2,2,2,2,2,6,21,1,0,4,21,1,0,0,0,4,
+            0,0,0,0,4,21,1,0,4,21,1,0,0,0,0,0,0,0,0,0,0,4,21,1,0,4,21,1,0,0,0,4,
+            0,0,0,0,4,21,1,0,4,21,1,0,0,0,0,0,0,0,0,0,0,4,21,1,0,4,21,1,0,0,0,4,
+            0,0,0,0,4,21,1,0,4,21,1,0,0,0,0,0,0,0,0,0,0,4,21,1,0,4,21,1,0,0,0,4,
+            0,0,0,0,4,21,1,0,4,21,9,8,8,8,8,8,8,8,8,8,8,12,21,1,0,4,21,1,0,0,0,0,
+            0,0,0,0,4,21,1,0,4,25,26,26,26,18,26,26,26,26,18,26,26,26,28,1,0,4,21,1,0,0,0,0,
+            0,0,0,0,4,21,1,0,0,2,2,2,6,21,3,2,2,6,21,3,2,2,2,0,0,4,21,1,0,0,0,0,
+            8,8,8,8,12,21,1,0,0,0,8,8,12,21,1,0,0,4,21,9,8,8,0,0,0,4,21,1,0,0,0,0,
+            19,26,26,26,26,20,1,0,0,4,19,26,26,28,1,0,0,4,25,26,26,22,1,0,0,4,17,26,26,26,26,18,
+            21,3,2,2,6,21,1,0,0,4,21,3,2,2,0,0,0,0,2,2,6,21,1,0,0,4,21,3,2,2,6,21,
+            21,1,0,0,4,21,1,0,0,4,21,1,0,0,0,0,0,0,0,0,4,21,1,0,0,4,21,3,2,2,6,21,
+            21,1,0,0,4,21,1,0,0,4,21,1,0,0,0,0,0,0,0,0,4,21,1,0,0,4,21,1,0,0,4,21,
+            21,1,0,0,4,21,9,8,8,12,21,9,8,8,8,8,8,8,8,8,12,21,9,8,8,12,21,1,0,0,4,21,
+            21,9,8,8,12,17,26,26,26,26,24,26,26,18,26,26,26,26,18,26,26,22,26,26,26,26,20,9,8,8,12,21,
+            17,26,26,26,26,20,3,2,2,2,2,2,6,21,3,2,2,6,21,3,2,2,2,2,2,6,17,26,26,26,26,20,
+            21,3,2,2,6,21,1,0,0,0,0,0,4,21,1,0,0,4,21,1,0,0,0,0,0,4,21,3,2,2,6,21,
+            21,1,0,0,4,21,1,0,0,0,0,0,4,21,1,0,0,4,21,1,0,0,0,0,0,4,21,1,0,0,4,21,
+            21,9,8,8,12,21,9,8,8,8,8,8,12,21,1,0,0,4,21,9,8,8,8,8,8,12,21,9,8,8,12,21,
+            25,26,26,26,26,24,26,26,26,26,26,26,26,28,9,8,8,12,25,26,26,26,26,26,26,26,22,26,26,26,26,28,
     };
+
+    //private final short board2Data[] = {
+    //
+   // }
 
     private final double validSpeeds[] = {1,1.5,3,4,5};
     private int currentSpeed = 3;
+    private Timer timer;
     private short[] screenData;
+    int[][] DPM;
 
     public Board() {
+
         loadImages();
+        initMatrix();
         initVariables();
         initBoard();
+    }
+
+    private void initMatrix() {
+        DPM = new int[N_BLOCKS][N_BLOCKS];
+        for(int i=0;i<N_BLOCKS;i++){
+            for(int j=0;j<N_BLOCKS;j++)
+                DPM[i][j] = RIGHT;
+        }
     }
 
     private void initBoard() {
@@ -103,7 +127,8 @@ public class Board extends JPanel implements ActionListener {
         dx = new int[4];
         dy = new int[4];
 
-
+        timer = new Timer(40, this);
+        timer.start();
     }
 
     @Override
@@ -139,6 +164,22 @@ public class Board extends JPanel implements ActionListener {
             //moveGhosts(g2d);
             checkMaze();
         }
+    }
+
+    private void showIntroScreen(Graphics2D g2d) {
+
+        g2d.setColor(new Color(0, 32, 48));
+        g2d.fillRect(50, SCREEN_SIZE / 2 - 30, SCREEN_SIZE - 100, 50);
+        g2d.setColor(Color.white);
+        g2d.drawRect(50, SCREEN_SIZE / 2 - 30, SCREEN_SIZE - 100, 50);
+
+        String s = "Press space to start.";
+        Font small = new Font("Helvetica", Font.BOLD, 25);
+        FontMetrics metr = this.getFontMetrics(small);
+
+        g2d.setColor(Color.white);
+        g2d.setFont(small);
+        g2d.drawString(s, (SCREEN_SIZE - metr.stringWidth(s)) / 2, SCREEN_SIZE / 2);
     }
     private void checkMaze() {
 
@@ -239,6 +280,7 @@ public class Board extends JPanel implements ActionListener {
         } else {
             drawPacmanDown(g2d);
         }
+
     }
 
     private void drawPacmanUp(Graphics2D g2d) {
@@ -365,10 +407,10 @@ public class Board extends JPanel implements ActionListener {
 
         int i;
         for (i = 0; i < N_BLOCKS * N_BLOCKS; i++) {
-            screenData[i] = levelData[i];
+            screenData[i] = board1Data[i];
         }
 
-        //continueLevel();
+        continueLevel();
     }
 
     private void continueLevel() {
@@ -390,7 +432,7 @@ public class Board extends JPanel implements ActionListener {
                 random = currentSpeed;
             }
 
-            //ghostSpeed[i] = validSpeeds[random];
+            ghostSpeed[i] = ((int)validSpeeds[random]);
         }
 
         pacman_x = 7 * BLOCK_SIZE;
@@ -444,7 +486,7 @@ public class Board extends JPanel implements ActionListener {
         if (inGame) {
             playGame(g2d);
         } else {
-            //showIntroScreen(g2d);
+            showIntroScreen(g2d);
         }
 
         g2d.drawImage(ii, 5, 5, this);
@@ -477,7 +519,7 @@ public class Board extends JPanel implements ActionListener {
 
                     }
              else {
-                if (key == 's' || key == 'S') {
+                if (key == 32) {
                     inGame = true;
                     initGame();
                 }

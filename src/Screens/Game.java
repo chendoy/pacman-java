@@ -23,7 +23,7 @@ public class Game extends JFrame {
 
         setTitle("PAC-MAN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800, 800);
+        setSize(850, 850);
         setLocationRelativeTo(null);
         setVisible(true);
     }
