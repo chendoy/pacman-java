@@ -8,10 +8,12 @@ public class Game extends JFrame {
 
     private Board board;
     private JToolBar infoPanel;
+    private int selectedBoard;
 
 
-    public Game() {
+    public Game(int selectedBoard) {
 
+        this.selectedBoard=selectedBoard;
         ImageIcon icon = new ImageIcon("src\\Resources\\icon.png");
         this.setIconImage(icon.getImage());
         initUI();
@@ -19,7 +21,7 @@ public class Game extends JFrame {
 
     private void initUI() {
 
-        add(new Board());
+        add(new Board(selectedBoard));
 
         setTitle("PAC-MAN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

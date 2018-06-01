@@ -1,4 +1,4 @@
 package GameComponents;
 
-public class Level1  extends Board {
-}
+//public class Level1  extends Board {
+//}
