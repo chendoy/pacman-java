@@ -1,5 +1,6 @@
 package GameComponents;
 
+import GameUtilities.CountDownTimer;
 import GameUtilities.InfoPanel;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.event.KeyEvent;
 
 public class Board extends JPanel implements ActionListener {
 
+    private CountDownTimer countDownTimer;
     private Dimension d;
     private Image ii;
     private final Color dotColor=new Color(192,192,0);
@@ -194,9 +196,7 @@ public class Board extends JPanel implements ActionListener {
     private void initBoard() {
 
         addKeyListener(new TAdapter());
-
         setFocusable(true);
-
         setBackground(Color.black);
         setDoubleBuffered(true);
     }
@@ -213,6 +213,8 @@ public class Board extends JPanel implements ActionListener {
         ghostSpeed = new int[MAX_GHOSTS];
         dx = new int[4];
         dy = new int[4];
+
+        countDownTimer=new CountDownTimer();
 
         timer = new Timer(40, this);
         timer.start();
@@ -488,19 +490,23 @@ public class Board extends JPanel implements ActionListener {
         initLevel();
         N_GHOSTS = 6;
         currentSpeed = 3;
+
     }
 
     private void initLevel() {
+
 
         int i;
         for (i = 0; i < N_BLOCKS * N_BLOCKS; i++) {
             screenData[i] = boardData[i];
         }
 
+
         continueLevel();
     }
 
     private void continueLevel() {
+
 
         short i;
         int dx = 1;
@@ -520,7 +526,10 @@ public class Board extends JPanel implements ActionListener {
             }
 
             ghostSpeed[i] = ((int)validSpeeds[random]);
+
+
         }
+
 
         pacman_x = 0 * BLOCK_SIZE;
         pacman_y = 0 * BLOCK_SIZE;
@@ -531,20 +540,24 @@ public class Board extends JPanel implements ActionListener {
         view_dx = -1;
         view_dy = 0;
         dying = false;
+
     }
 
-    private void drawScore(Graphics2D g) {
+    private void drawScoreTimeLives(Graphics2D g) {
 
-        int i;
         String s;
+        String time;
+        int i;
 
         g.setFont(smallFont);
         g.setColor(new Color(96, 255, 6));
         s = "Score: " + score;
-        g.drawString(s, SCREEN_SIZE / 2 + 96, SCREEN_SIZE + 16);
+        g.drawString(s, SCREEN_SIZE / 2 -280, SCREEN_SIZE + 25);
+        time=countDownTimer.timeLabel.getText();
+        g.drawString(time,SCREEN_SIZE / 2 -180, SCREEN_SIZE + 25);
 
         for (i = 0; i < pacsLeft; i++) {
-            g.drawImage(pacman3left, i * 28 + 8, SCREEN_SIZE + 1, this);
+            g.drawImage(pacman3left, i * 28 +8, SCREEN_SIZE +10, this);
         }
     }
 
@@ -582,7 +595,7 @@ public class Board extends JPanel implements ActionListener {
         g2d.fillRect(0, 0, d.width, d.height);
 
         drawMaze(g2d);
-        drawScore(g2d);
+        drawScoreTimeLives(g2d);
         doAnim();
 
         if (inGame) {
@@ -616,14 +629,19 @@ public class Board extends JPanel implements ActionListener {
                 } else if (key == KeyEvent.VK_DOWN) {
                     req_dx = 0;
                     req_dy = 1;
-                } else if (key == KeyEvent.VK_ESCAPE )
+                } else if (key == KeyEvent.VK_ESCAPE ) {
                     inGame = false;
+                    countDownTimer.stop();
+                }
 
                     }
              else {
                 if (key == 32) {
                     inGame = true;
                     initGame();
+                    countDownTimer.start();
+
+
                 }
             }
         }

@@ -12,7 +12,7 @@ the player makes his first move
 public class CountDownTimer extends JPanel {
 
 
-    private JLabel timeLabel = new JLabel();
+    public JLabel timeLabel = new JLabel();
     private CountTimer cntd;
 
     public CountDownTimer() {
@@ -64,6 +64,16 @@ public class CountDownTimer extends JPanel {
             }
         }
 
+
+        public void pause() {
+            isTimerActive = false;
+        }
+
+        public void resume() {
+            isTimerActive = true;
+            tmr.restart();
+        }
+
         public void start() {
             count = 0;
             isTimerActive = true;
@@ -76,7 +86,7 @@ public class CountDownTimer extends JPanel {
 
     }
 
-    private String TimeFormat(int count) {
+    public String TimeFormat(int count) {
 
         int hours = count / 3600;
         int minutes = (count-hours*3600)/60;

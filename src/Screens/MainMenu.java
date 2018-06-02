@@ -36,6 +36,7 @@ public class MainMenu extends JFrame implements ActionListener {
         this.setSize(1000, 920);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
+        setResizable(false);
     }
 
     private void setupBoard() {

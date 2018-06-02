@@ -17,6 +17,7 @@ public class Game extends JFrame {
         ImageIcon icon = new ImageIcon("src\\Resources\\icon.png");
         this.setIconImage(icon.getImage());
         initUI();
+        setResizable(false);
     }
 
     private void initUI() {
