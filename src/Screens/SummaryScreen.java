@@ -1,5 +1,4 @@
 package Screens;
-import GameUtilities.Timer;
 import javax.swing.*;
 
 public class SummaryScreen extends JFrame {

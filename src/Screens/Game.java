@@ -1,13 +1,13 @@
 package Screens;
+import GameUtilities.*;
 import GameComponents.Board;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class Game extends JFrame {
 
     private Board board;
-    private JToolBar infoPanel;
+    private InfoPanel infoPanel;
     private int selectedBoard;
 
 
@@ -21,13 +21,16 @@ public class Game extends JFrame {
 
     private void initUI() {
 
-        add(new Board(selectedBoard));
+        Board board=new Board(selectedBoard);
+        add(board);
+
 
         setTitle("PAC-MAN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(850, 850);
         setLocationRelativeTo(null);
         setVisible(true);
+
     }
 
 
