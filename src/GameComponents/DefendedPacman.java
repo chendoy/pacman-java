@@ -1,4 +1,4 @@
 package GameComponents;
 
-public class DefendedPacman {
+public class DefendedPacman extends Pacman{
 }

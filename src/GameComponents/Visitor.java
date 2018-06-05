@@ -2,8 +2,8 @@ package GameComponents;
 
 public interface Visitor {
 
-    public void visit(NicePacman nicePacman);
-    public void visit(DefendedPacman defendedPacman);
-    public void visit(AngryPacman angryPacman);
+    void visit(NicePacman nicePacman);
+    void visit(DefendedPacman defendedPacman);
+    void visit(AngryPacman angryPacman);
 
 }

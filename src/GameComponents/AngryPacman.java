@@ -1,4 +1,4 @@
 package GameComponents;
 
-public class AngryPacman {
+public class AngryPacman extends Pacman {
 }

@@ -20,7 +20,7 @@ public class InfoPanel extends JToolBar {
 
         JLabel lives_label=new JLabel("Lives: "+livesLeft+" ");
         JLabel score_label=new JLabel("Score: "+score+" ");
-        JLabel level_label=new JLabel("Level: "+level+" ");
+        JLabel level_label=new JLabel("GameLevel: "+level+" ");
         JLabel fruits_label=new JLabel("Fruits: "+fruits+" ");
 
         this.setSize(850,100);

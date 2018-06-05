@@ -5,6 +5,7 @@ public class Ghost implements Visitor{
     private int type;
     private double speed;
 
+
     public Ghost(int type) {
         this.type=type;
         switch (type)

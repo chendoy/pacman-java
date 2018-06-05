@@ -1,16 +1,12 @@
 package Screens;
 
-import javax.annotation.Resource;
+import GameComponents.Board;
+
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static java.awt.GridBagConstraints.HORIZONTAL;
-import static java.awt.GridBagConstraints.WEST;
-import static javax.swing.SwingConstants.EAST;
-import static javax.swing.TransferHandler.NONE;
 
 public class MainMenu extends JFrame implements ActionListener {
 
@@ -38,6 +34,7 @@ public class MainMenu extends JFrame implements ActionListener {
         this.setVisible(true);
         setResizable(false);
     }
+
 
     private void setupBoard() {
 
@@ -128,7 +125,8 @@ public class MainMenu extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this,"No Selected Board, Select a Board First", "No Selected Board",
                         JOptionPane.ERROR_MESSAGE);
             else{
-            Game game=new Game(selectedBoard);}}
+            Game game=new Game(selectedBoard);
+            dispose();}}
 
         if (e.getSource().equals(exitGame))
             System.exit(0);
