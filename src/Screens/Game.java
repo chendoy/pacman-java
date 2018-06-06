@@ -2,15 +2,20 @@ package Screens;
 import GameUtilities.*;
 import GameComponents.Board;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 
-public class Game extends JFrame {
+public class Game extends JFrame  implements ActionListener{
 
 
     private int selectedBoard;
     private int currentLevel;
     private CountDownTimer countDownTimer;
+    private JButton fast_forward;
+    private Board board;
 
     public Game(int selectedBoard) {
         currentLevel=1;
@@ -89,8 +94,14 @@ public class Game extends JFrame {
     }
 
     private void initUI() {
-        Board board=new Board(selectedBoard,this,1);
+        board=new Board(selectedBoard,this,1);
+        ImageIcon fast_forward_img=new ImageIcon("src\\Resources\\fast_forward.png");
+        fast_forward=new JButton("",fast_forward_img);
+        fast_forward.setBorder(BorderFactory.createEmptyBorder());
+        fast_forward.addActionListener(this);
+        fast_forward.setFocusable(false);
         add(board);
+        add(fast_forward,BorderLayout.AFTER_LINE_ENDS);
         setTitle("PAC-MAN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(850, 850);
@@ -100,4 +111,8 @@ public class Game extends JFrame {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        board.fastForward();
+    }
 }

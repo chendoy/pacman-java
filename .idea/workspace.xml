@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a6eac23-0e55-4098-9658-fc85e4aa41fd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/איפה שהרוחות מתחילות בכל הלוחות.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board.class" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameComponents/Board.java" afterPath="$PROJECT_DIR$/src/GameComponents/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Screens/Game.java" afterPath="$PROJECT_DIR$/src/Screens/Game.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameComponents/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="45" column="56" lean-forward="true" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+            <state relative-caret-position="346">
+              <caret line="846" column="9" lean-forward="false" selection-start-line="846" selection-start-column="9" selection-end-line="846" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="n#!!doc;n#board1Data#0;n#Board#0" expanded="false" />
@@ -61,7 +58,7 @@
       <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Screens/MainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2604">
+            <state relative-caret-position="1712">
               <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -102,12 +99,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-              <folding />
+            <state relative-caret-position="260">
+              <caret line="103" column="53" lean-forward="false" selection-start-line="103" selection-start-column="25" selection-end-line="103" selection-end-column="53" />
+              <folding>
+                <element signature="e#3272#3273#0" expanded="true" />
+                <element signature="e#3307#3308#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,7 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>paint</find>
       <find>start</find>
       <find>TIMER</find>
       <find>16</find>
@@ -154,6 +153,7 @@
       <find>=de</find>
       <find>N_GH</find>
       <find>1024</find>
+      <find>draw</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,12 +191,12 @@
         <option value="$PROJECT_DIR$/src/GameComponents/DefendedPacman.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/StaticElement.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/GameLevel.java" />
-        <option value="$PROJECT_DIR$/src/Screens/Game.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/Ghost.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/Visitor.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/Pacman.java" />
         <option value="$PROJECT_DIR$/src/Screens/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/Board.java" />
+        <option value="$PROJECT_DIR$/src/Screens/Game.java" />
       </list>
     </option>
   </component>
@@ -230,6 +230,43 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GameComponents" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GameUtilities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Screens" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -264,37 +301,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GameComponents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Screens" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -479,7 +485,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16487648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -693,14 +699,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameComponents/GameLevel.java" />
-    <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64176">
@@ -748,7 +746,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Screens/MainMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2604">
+        <state relative-caret-position="1712">
           <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -758,12 +756,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameComponents/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="45" column="56" lean-forward="true" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+        <state relative-caret-position="346">
+          <caret line="846" column="9" lean-forward="false" selection-start-line="846" selection-start-column="9" selection-end-line="846" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="n#!!doc;n#board1Data#0;n#Board#0" expanded="false" />
             <element signature="n#!!doc;n#board2Data#0;n#Board#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="103" column="53" lean-forward="false" selection-start-line="103" selection-start-column="25" selection-end-line="103" selection-end-column="53" />
+          <folding>
+            <element signature="e#3272#3273#0" expanded="true" />
+            <element signature="e#3307#3308#0" expanded="true" />
           </folding>
         </state>
       </provider>

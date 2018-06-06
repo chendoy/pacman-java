@@ -2,8 +2,6 @@ package GameComponents;
 
 import Screens.Game;
 import Screens.MainMenu;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import sun.applet.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,13 +13,15 @@ import java.awt.event.KeyEvent;
 public class Board extends JPanel implements ActionListener {
 
 
-    private final int DELAY=2; //40=default value;
+    private int DELAY=40; //40=default value;
     private Dimension d;
     private final Color dotColor=new Color(192,192,0);
     private Color mazeColor;
     private boolean inGame=false;
     private boolean dying=false;
     private Image ii;
+
+    private boolean isFF=false; //is Fast Forward on?
 
     private final int maxSpeed = 6;
 
@@ -829,7 +829,7 @@ public class Board extends JPanel implements ActionListener {
 
     }
 
-    private void drawScoreTimeLives(Graphics2D g) {
+    private void drawToolbar(Graphics2D g) {
 
         String s;
         String time;
@@ -885,7 +885,7 @@ public class Board extends JPanel implements ActionListener {
         g2d.fillRect(0, 0, d.width, d.height);
 
         drawMaze(g2d);
-        drawScoreTimeLives(g2d);
+        drawToolbar(g2d);
         doAnim();
 
         if (inGame) {
@@ -957,6 +957,19 @@ public class Board extends JPanel implements ActionListener {
     private void initReachedEdge() {
         for(int i=0;i<reachedEdge.length;i++) {
             reachedEdge[i]=false;
+        }
+    }
+
+    public void fastForward() {
+        if(isFF)
+        {
+            this.timer.setDelay(40);
+            isFF=false;
+        }
+        else
+        {
+            this.timer.setDelay(4);
+            isFF=true;
         }
     }
     @Override
