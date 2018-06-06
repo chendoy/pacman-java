@@ -26,7 +26,6 @@ public class MainMenu extends JFrame implements ActionListener {
     public MainMenu() {
         super("PAC-MAN");
 
-
         setupBoard();
 
         this.setSize(1000, 920);

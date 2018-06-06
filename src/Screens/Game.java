@@ -101,7 +101,7 @@ public class Game extends JFrame  implements ActionListener{
         fast_forward.addActionListener(this);
         fast_forward.setFocusable(false);
         add(board);
-        add(fast_forward,BorderLayout.AFTER_LINE_ENDS);
+//        add(fast_forward,BorderLayout.AFTER_LINE_ENDS);
         setTitle("PAC-MAN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(850, 850);
