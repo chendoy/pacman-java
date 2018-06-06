@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 public class Board extends JPanel implements ActionListener {
 
 
+    private final int DELAY=2; //40=default value;
     private Dimension d;
     private final Color dotColor=new Color(192,192,0);
     private Color mazeColor;
@@ -38,10 +39,11 @@ public class Board extends JPanel implements ActionListener {
     private int pacAnimCount = PAC_ANIM_DELAY;
     private int pacAnimDir = 1;
     private int pacmanAnimPos = 0;
-    private int N_GHOSTS = 3;
+    private int N_GHOSTS = 6;
     private int pacsLeft, score;
     private int[] dx, dy;
     private int[] ghost_x, ghost_y, ghost_dx, ghost_dy, ghostSpeed;
+    private boolean[] reachedEdge=new boolean[N_GHOSTS];
 
     private boolean cageOpened=false;
 
@@ -121,10 +123,10 @@ public class Board extends JPanel implements ActionListener {
             5,  5,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  4,  21, 9,  8,  8,  8,  8,  12, 5,  5,
             5,  5,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  4,  25, 26, 26, 26, 26, 26, 26, 4,  5,
             5,  5,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  0,  2,  2,  2,  2,  2,  2,  6,  5,  5,
-            5,  13, 5,  9,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  12, 21, 9,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  12, 5,  5,
-            9,  26, 24, 26, 26, 26, 18, 26, 26, 26, 26, 18, 26, 26, 26, 24, 26, 26, 26, 26, 18, 26, 26, 26, 26, 18, 26, 26, 26, 26, 28, 5,
-            11, 10, 10, 10, 10, 14, 5,  3,  2,  2,  6,  21, 3,  2,  2,  2,  2,  2,  2,  6,  21, 3,  2,  2,  6,  21, 11, 10, 10, 10, 10, 14,
-            19, 10, 10, 10, 10, 10, 12, 1,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  4,  25, 26, 26, 26, 26, 26, 6,
+            5,  13, 5,  9,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  12, 21, 73,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  12, 133,133,
+            9,  26, 24, 26, 26, 26, 18, 26, 26, 26, 26, 18, 26, 26, 26, 24, 58, 26, 26, 26, 18, 26, 26, 26, 26, 18, 26, 26, 26, 26,  88, 134,
+            11, 10, 10, 10, 10, 14, 5,  3,  2,  2,  6,  21, 3,  2,  2,  2,  34,  2,  2,  6,  21, 3,  2,  2,  6,  21, 11, 10, 10, 10, 14, 133,
+            19, 10, 10, 10, 10, 10, 12, 1,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  4,  25, 26, 26, 26, 26, 26, 132,
             21, 11, 10, 10, 10, 10, 2,  0,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 9,  8,  8,  8,  10, 10, 10, 10, 2,  6,  5,
             17, 26, 26, 26, 26, 22, 1,  0,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  0,  4,  17, 10, 10, 10, 2,  10, 10, 10, 6,  1,  4,  5,
             21, 3,  3,  2,  6,  21, 1,  0,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 3,  2,  6,  5,  3,  2,  6,  5,  1,  4,  5,
@@ -135,7 +137,7 @@ public class Board extends JPanel implements ActionListener {
             21, 1,  1,  0,  0,  4,  25, 26, 26, 26, 18, 12, 1,  4,  21, 1,  4,  5,  1,  0,  4,  1,  10, 10, 10, 12, 1,  4,  5,  1,  4,  21,
             21, 1,  1,  0,  0,  0,  2,  2,  2,  6,  5,  3,  0,  4,  21, 1,  4,  5,  1,  0,  4,  5,  3,  2,  2,  2,  0,  4,  5,  1,  4,  5,
             21, 9,  9,  8,  8,  8,  8,  8,  8,  12, 5,  1,  0,  4,  21, 1,  4,  5,  1,  0,  4,  5,  9,  8,  8,  8,  8,  12, 5,  9,  12, 5,
-            17, 26, 26, 26, 26, 26, 26, 26, 26, 26, 12, 1,  0,  4,  21, 1,  4,  5,  1,  0,  4,  25, 26, 26, 26, 26, 26, 26, 24, 26, 26, 4,
+            17, 26, 26, 26, 26, 26, 26, 26, 26, 26, 12, 1,  0,  4,  21, 1,  4,  5,  1,  0,  4,  25, 26, 26, 26, 26, 26, 26, 24, 26, 26, 132,
             21, 3,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0,  4,  21, 1,  4,  5,  1,  0,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  6,  5,
             21, 9,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  12, 21, 9,  12, 5,  9,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  12, 5,
             25, 10, 10, 10, 10, 10, 10, 10, 10, 26, 10, 10, 10, 10, 8, 10, 10, 8,  10, 26, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 28
@@ -155,28 +157,28 @@ public class Board extends JPanel implements ActionListener {
             1,  0,  0,  0,  0,  0,  0,  0,  4,  21, 5,  21, 1,  0,  4,  5,  1,  4,  5,  1,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  4,
             1,  0,  0,  0,  0,  0,  0,  0,  4,  21, 5,  21, 1,  0,  4,  5,  1,  4,  5,  1,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  4,
             1,  0,  0,  0,  0,  0,  0,  0,  4,  21, 5,  21, 1,  0,  4,  5,  1,  4,  5,  1,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  4,
-            9,  8,  8,  8,  8,  8,  8,  8,  12, 21, 13, 21, 9,  8,  12, 5,  9,  12, 5,  9,  12, 5,  9,  8,  8,  8,  8,  8,  8,  8,  8,  12,
-            19, 26, 26, 18, 26, 26, 26, 26, 26, 8,  10, 16, 26, 26, 26, 24, 26, 26, 24, 26, 18, 8,  26, 26, 26, 18, 26, 26, 26, 26, 26, 22,
-            5,  3,  6,  5,  3,  2,  2,  2,  2,  2,  6,  21, 3,  2,  2,  2,  2,  2,  2,  6,  21, 3,  2,  2,  6,  5,  3,  2,  2,  2,  6,  5,
-            5,  1,  4,  5,  1,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  4,  5,  1,  0,  0,  0,  4,  5,
-            5,  1,  4,  5,  1,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 9,  8,  8,  12, 5,  9,  8,  8,  8,  12, 5,
-            5,  9,  12, 5,  9,  8,  8,  8,  8,  8,  12, 21, 1,  0,  0,  0,  0,  0,  0,  4,  17, 26, 26, 18, 26, 24, 26, 26, 26, 26, 26, 28,
-            9,  26, 26, 24, 26, 26, 26, 26, 26, 18, 26, 20, 1,  0,  0,  0,  0,  0,  0,  4,  21, 3,  6,  5,  3,  2,  2,  2,  2,  2,  2,  2,
+            9,  8,  8,  8,  8,  8,  8,  8,  12, 21, 13, 21, 9,  8,  12, 5,  73,  12, 5,  9,  140, 5,  9,  8,  8,  8,  8,  8,  8,  8,  8,  12,
+            19, 26, 26, 18, 26, 26, 26, 26, 26, 8,  10, 16, 26, 26, 26, 24, 58,  26, 24, 26,  146, 8,  26, 26, 26, 18, 26, 26, 26, 26, 26, 22,
+            5,  3,  6,  5,  3,  2,  2,  2,  2,  2,  6,  21, 3,  2,  2,  2,  34,  2,  2,  6,   21, 3,  2,  2,  6,  5,  3,  2,  2,  2,  6,  5,
+            5,  1,  4,  5,  1,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  0,  32,  0,  0,  4,  21, 1,  0,  0,  4,  5,  1,  0,  0,  0,  4,  5,
+            5,  1,  4,  5,  1,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  0,  32,  0,  0,  4,  21, 9,  8,  8,  12, 5,  9,  8,  8,  8,  12, 5,
+            5,  9,  12, 5,  9,  8,  8,  8,  8,  8,  12, 21, 1,  0,  0,  0,  32,  0,  0,  4,  145, 26, 26, 18, 26, 24, 26, 26, 26, 26, 26, 28,
+            9,  26, 26, 24, 26, 26, 26, 26, 26, 18, 26, 20, 1,  0,  0,  0,  32,  0,  0,  4,  149, 3,  6,  5,  3,  2,  2,  2,  2,  2,  2,  2,
             2,  2,  2,  2,  2,  2,  2,  2,  6,  5,  7,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 1,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,
             0,  0,  0,  0,  0,  0,  0,  0,  4,  5,  5,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 1,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,
             0,  0,  0,  0,  0,  0,  0,  0,  4,  5,  5,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 1,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,
             0,  0,  0,  0,  0,  0,  0,  0,  4,  5,  5,  21, 1,  0,  0,  0,  0,  0,  0,  4,  21, 9,  12, 5,  9,  8,  8,  8,  8,  8,  8,  8,
-            8,  8,  8,  8,  8,  8,  8,  8,  12, 5,  13, 21, 9,  8,  8,  8,  8,  8,  8,  12, 17, 26, 26, 24, 26, 26, 26, 26, 26, 26, 26, 22,
+            8,  8,  8,  8,  8,  8,  8,  8,  12, 5,  13, 21, 9,  8,  8,  8,  8,  8,  8,  12, 81, 90, 26, 88, 90, 26, 26, 26, 26, 26, 26, 22,
             19, 26, 26, 26, 26, 26, 26, 26, 26, 24, 26, 16, 26, 26, 26, 26, 26, 26, 26, 26, 20, 3,  2,  2,  2,  2,  2,  2,  2,  2,  6,  21,
             5,  3,  2,  2,  2,  2,  2,  2,  2,  2,  6,  5,  11, 10, 10, 10, 10, 10, 10, 14, 21, 1,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21,
             5,  9,  8,  8,  8,  8,  8,  8,  8,  8,  12, 1,  26, 26, 26, 18, 26, 26, 26, 18, 20, 9,  8,  8,  8,  8,  8,  8,  8,  8,  12, 21,
-            1,  10, 10, 10, 10, 10, 10, 10, 10, 10, 26, 4,  3,  2,  6,  21, 3,  2,  6,  1,  24, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 20,
-            21, 3,  2,  2,  2,  2,  2,  2,  2,  2,  6,  21, 1,  0,  4,  21, 1,  0,  4,  5,  3,  2,  2,  2,  2,  2,  2,  2,  2,  2,  6,  5,
+            1,  10, 10, 10, 10, 10, 10, 10, 10, 10, 26, 4,  3,  2,  6,  21, 3,  2,  6,  1,  24, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 148,
+            21, 3,  2,  2,  2,  2,  2,  2,  2,  2,  6,  21, 1,  0,  4,  21, 1,  0,  4,  5,  3,  2,  2,  2,  2,  2,  2,  2,  2,  2,  6,  133,
             21, 1,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  4,  21, 1,  0,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  4,  5,
             21, 1,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  4,  21, 1,  0,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  4,  5,
             21, 1,  0,  0,  0,  0,  0,  0,  0,  0,  4,  21, 1,  0,  4,  21, 1,  0,  4,  5,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  4,  5,
             21, 9,  8,  8,  8,  8,  8,  8,  8,  8,  12, 21, 1,  0,  4,  21, 1,  0,  4,  5,  9,  8,  8,  8,  8,  8,  8,  8,  8,  8,  12, 5,
-            25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 28, 9,  8,  12, 29, 9,  8,  12, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 24, 26, 28
+            25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 28, 9,  8,  12, 29, 9,  8,  12, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 28
 
     };
     //endregion
@@ -218,13 +220,14 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.black);
         setDoubleBuffered(true);
+        initReachedEdge();
     }
 
     private void initVariables() {
 
         screenData = new short[N_BLOCKS * N_BLOCKS];
         mazeColor = new Color(5, 5, 100);
-        d = new Dimension(200, 200);
+        d = new Dimension(800, 800);
         ghost_x = new int[MAX_GHOSTS];
         ghost_dx = new int[MAX_GHOSTS];
         ghost_y = new int[MAX_GHOSTS];
@@ -232,7 +235,7 @@ public class Board extends JPanel implements ActionListener {
         ghostSpeed = new int[MAX_GHOSTS];
         dx = new int[4];
         dy = new int[4];
-        timer = new Timer(10, this); //40==default value
+        timer = new Timer(DELAY, this);
         timer.start();
     }
 
@@ -244,8 +247,10 @@ public class Board extends JPanel implements ActionListener {
                 screenData[431]-=2; screenData[432]-=2; screenData[400]-=8;screenData[399]-=8;
                 break;
             case 2:
+                screenData[496]-=8; screenData[528]-=2;
                 break;
             case 3:
+                screenData[368]-=8; screenData[400]-=2;
                 break;
         }
         cageOpened=true;
@@ -253,6 +258,7 @@ public class Board extends JPanel implements ActionListener {
 
     private void moveGhosts(Graphics2D g2d) {
 
+        boolean AllReachedEdge=false;
         short i;
         int pos;
         int count;
@@ -314,32 +320,29 @@ public class Board extends JPanel implements ActionListener {
 
             }
 
-            pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
+            if (!AllReachedEdge) {
 
 
-            if ((screenData[pos] & 32) == 32) {
-                //System.out.println("up!");
-                ghost_dx[i]=0;
-                ghost_dy[i]=-1;
-                //count++;
+                pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
+
+                if ((screenData[pos] & 32) == 32) {
+                    //System.out.println("up!");
+                    ghost_dx[i] = 0;
+                    ghost_dy[i] = -1;
+                }
+
+                if ((screenData[pos] & 64) == 64) {
+                    //System.out.println("right!");
+                    ghost_dx[i] = 1;
+                    ghost_dy[i] = 0;
+                }
+
+                if ((screenData[pos] & 128) == 128) {
+                    //System.out.println("down!");
+                    ghost_dx[i] = 0;
+                    ghost_dy[i] = 1;
+                }
             }
-
-            if ((screenData[pos] & 64) == 64) {
-                //System.out.println("right!");
-                ghost_dx[i]=1;
-                ghost_dy[i]=0;
-                //count++;
-            }
-
-            if ((screenData[pos] & 128) == 128) {
-                System.out.println("down!");
-                ghost_dx[i]=0;
-                ghost_dy[i]=1;
-                //count++;
-            }
-
-            //System.out.println("dx: "+ghost_dx[i]+", "+"dy: "+ghost_dy[i]);
-
 
             ghost_x[i] = ghost_x[i] + (ghost_dx[i] * ghostSpeed[i]);
             ghost_y[i] = ghost_y[i] + (ghost_dy[i] * ghostSpeed[i]);
@@ -352,7 +355,24 @@ public class Board extends JPanel implements ActionListener {
 
                 dying = true;
             }
+
         }
+
+            /*checks when a ghosts reaches an edges
+              why? in order to close the edge path constraints we apply at first (they aren't needed anymore)
+             */
+
+        for(i=0;i<N_GHOSTS;i++) {
+            pos =ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
+            if(pos==1023)
+                reachedEdge[i]=true;
+        }
+        AllReachedEdge=true;
+        for(i=0;i<N_GHOSTS;i++) {
+           if(reachedEdge[i]==false)
+               AllReachedEdge=false;
+        }
+
     }
 
     private void drawGhost(Graphics2D g2d, int x, int y) {
@@ -751,7 +771,7 @@ public class Board extends JPanel implements ActionListener {
         pacsLeft = 3;
         score = 0;
         initLevel();
-        N_GHOSTS = 3;
+        N_GHOSTS = 6;
         currentSpeed = 3;
 
     }
@@ -933,6 +953,12 @@ public class Board extends JPanel implements ActionListener {
 
 
 }
+
+    private void initReachedEdge() {
+        for(int i=0;i<reachedEdge.length;i++) {
+            reachedEdge[i]=false;
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
 
