@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 public class Board extends JPanel implements ActionListener {
 
 
+    public SpringLayout layout;
     private int DELAY=40; //40=default value;
     private Dimension d;
     private final Color dotColor=new Color(192,192,0);
@@ -48,7 +49,7 @@ public class Board extends JPanel implements ActionListener {
     private boolean cageOpened=false;
 
     private Image ghost;
-    private Image pacman1, pacman2up, pacman2left, pacman2right, pacman2down;
+    private Image pacman1, pacman2up, pacman2left, pacman2right, pacman2down, fastForwardImg;
     private Image pacman3up, pacman3down, pacman3left, pacman3right;
     private Image pacman4up, pacman4down, pacman4left, pacman4right;
     private Image imgRegularPill,imgEnergyPill,imgPineApple,imgApple,imgStrawberry;
@@ -193,6 +194,11 @@ public class Board extends JPanel implements ActionListener {
     private int _selectedBoard;
 
     public Board(int selectedBoard, Game game,int level) {
+
+        layout=new SpringLayout();
+        setLayout(layout);
+
+
         this._game=game;
         this.level=level;
         this._selectedBoard=selectedBoard;
@@ -845,6 +851,8 @@ public class Board extends JPanel implements ActionListener {
         for (i = 0; i < pacsLeft; i++) {
             g.drawImage(pacman3left, i * 28 +8, SCREEN_SIZE +10, this);
         }
+        g.drawImage(fastForwardImg, 760, 760, this);
+
     }
 
     private void loadImages() {
@@ -868,6 +876,7 @@ public class Board extends JPanel implements ActionListener {
         imgPineApple=new  ImageIcon("src\\Resources\\pineapple.png").getImage();
         imgApple=new   ImageIcon("src\\Resources\\apple.png").getImage();
         imgStrawberry=new ImageIcon("src\\Resources\\strawberry.png").getImage();
+        fastForwardImg=new ImageIcon("src\\Resources\\fast_forward.png").getImage();
     }
 
     @Override

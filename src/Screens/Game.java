@@ -16,6 +16,7 @@ public class Game extends JFrame  implements ActionListener{
     private CountDownTimer countDownTimer;
     private JButton fast_forward;
     private Board board;
+    private GridBagLayout layout;
 
     public Game(int selectedBoard) {
         currentLevel=1;
@@ -98,10 +99,17 @@ public class Game extends JFrame  implements ActionListener{
         ImageIcon fast_forward_img=new ImageIcon("src\\Resources\\fast_forward.png");
         fast_forward=new JButton("",fast_forward_img);
         fast_forward.setBorder(BorderFactory.createEmptyBorder());
+        fast_forward.setSize(50,50);
         fast_forward.addActionListener(this);
         fast_forward.setFocusable(false);
+
+        board.add(fast_forward);
         add(board);
-        add(fast_forward,BorderLayout.AFTER_LINE_ENDS);
+
+        board.layout.putConstraint(SpringLayout.NORTH,fast_forward,750,SpringLayout.NORTH,getContentPane());
+        board.layout.putConstraint(SpringLayout.WEST,fast_forward,750,SpringLayout.WEST,getContentPane());
+
+
         setTitle("PAC-MAN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(850, 850);
