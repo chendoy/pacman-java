@@ -24,12 +24,16 @@ public class Board extends JPanel implements ActionListener {
     boolean drawRandomFruits;
     boolean drawFruitsForFirstTime;
     boolean threeSecTranparent;
+    boolean twoSecFlickeringTime;
     int flip=0;
 
     private boolean isFF = false; //is Fast Forward on?
-    Timer tenSecTimer;
+
     short[]randompositionarr;
+    Timer tenSecTimer;
     Timer threeSecTimer;
+    Timer stableTimeTimer;
+    Timer flickeringTimeTimer;
 
     private final int maxSpeed = 6;
 
@@ -222,6 +226,7 @@ public class Board extends JPanel implements ActionListener {
         }
         drawRandomFruits =false;
         drawFruitsForFirstTime =false;
+        twoSecFlickeringTime=false;
 
         loadImages();
         initVariables();
@@ -255,6 +260,9 @@ public class Board extends JPanel implements ActionListener {
         tenSecTimer=new Timer(10,this);
         tenSecTimer.setInitialDelay(10000);
         threeSecTimer=new Timer(3000,this);
+        stableTimeTimer =new Timer(3000,this);
+        flickeringTimeTimer=new Timer(2000,this);
+
 
     }
 
@@ -476,7 +484,7 @@ public class Board extends JPanel implements ActionListener {
 
         if (finished) {
 
-            score += 50;
+//            score += 50;
             _game.moveTonextLevel(level, _selectedBoard);
             this.setVisible(false);
 
@@ -735,20 +743,7 @@ public class Board extends JPanel implements ActionListener {
                     else
                     {
                         if (i == 31 | i == 0 | i == 1023 || i == 992) {
-                            if(threeSecTranparent)
-                            {
-                                if(flip==0){
-                                    g2d.drawImage(imgEnergyPill, x + 3, y + 2, this);
-                                }
-                                else
-                                {
-                                    g2d.drawImage(imgTransparentPill, x + 3, y + 2, this);
-                                }
-                            }
-                            else {
                                 g2d.drawImage(imgEnergyPill, x + 3, y + 2, this);
-                            }
-
                         }
                             if (drawRandomFruits) {
                                 randompositionarr = randomFruitSpots(level);
@@ -878,10 +873,14 @@ public class Board extends JPanel implements ActionListener {
                                     g2d.fillRect(x + 11, y + 11, 2, 2);
                                 }
                             }
-                         if(threeSecTranparent) {
-                                if (flip==0) flip=1;
-                                else flip=0;
-                         }
+
+                                if (flip==0) {
+                                flip=1;
+                                }
+                                else{
+                                flip=0;
+                                }
+
 
 //                        boolean painted = false;
 //                        //draw energy points
@@ -1166,7 +1165,22 @@ public class Board extends JPanel implements ActionListener {
         else if(e.getSource().equals(threeSecTimer)) {
             threeSecTranparent=false;
             threeSecTimer.stop();
+//            stableTimeTimer.start();
         }
+//        else if(e.getSource().equals(stableTimeTimer))
+//        {
+//            stableTimeTimer.stop();
+//            twoSecFlickeringTime=true;
+//            flickeringTimeTimer.start();
+//        }
+//        else if(e.getSource().equals(flickeringTimeTimer)) {
+//            twoSecFlickeringTime=false;
+//            flickeringTimeTimer.stop();
+//            drawRandomFruits=true;
+//            threeSecTimer.start();
+//
+//
+//        }
 
 
     }
@@ -1182,7 +1196,7 @@ public class Board extends JPanel implements ActionListener {
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 37, 45, 50, 58, 63, 64, 69, 77, 82, 90, 95, 96, 101, 109, 114, 122, 127, 128, 129, 130, 131, 132, 133, 141, 146, 154, 155, 156, 157, 158, 159, 160, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 191, 192, 197, 202, 213, 218, 223, 224, 229, 234, 245, 250, 255, 256, 261, 266, 277, 282, 287, 288, 289, 290, 291, 292, 293, 298, 299, 300, 301, 306, 307, 308, 309, 314, 315, 316, 317, 318, 319, 325, 333, 338, 346, 357, 365, 368, 370, 371, 372, 373, 374, 378, 389, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 410, 421, 425, 432, 438, 442, 453, 457, 464, 470, 474, 485, 489, 496, 502, 506, 517, 521, 528, 534, 538, 549, 553, 566, 570, 581, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598, 602, 613, 621, 626, 634, 645, 653, 658, 666, 672, 673, 674, 675, 676, 677, 682, 683, 684, 685, 690, 691, 692, 693, 698, 699, 700, 701, 702, 703, 704, 709, 714, 725, 730, 735, 736, 741, 746, 757, 762, 767, 768, 773, 778, 789, 794, 799, 800, 805, 810, 821, 826, 831, 832, 837, 838, 839, 840, 841, 842, 843, 844, 845, 846, 847, 848, 849, 850, 851, 852, 853, 854, 855, 856, 857, 858, 863, 864, 865, 866, 867, 868, 869, 877, 882, 890, 891, 892, 893, 894, 895, 896, 901, 909, 914, 922, 927, 928, 933, 941, 946, 954, 959, 960, 965, 973, 978, 986, 991, 993, 994, 995, 996, 997, 998, 999, 1000, 1001, 1002, 1003, 1004, 1005, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022
         };
         if (_selectedBoard == 1)
-            return board1Data;
+            return bord1FreeSpots;
         else if (_selectedBoard == 2)
             return board2FreeSpots;
         else
