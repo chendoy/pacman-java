@@ -1,5 +1,6 @@
 package GameComponents;
 
+import GameUtilities.GameToolBar;
 import Screens.Game;
 import Screens.MainMenu;
 
@@ -50,17 +51,15 @@ public class Board extends JPanel implements ActionListener {
     Timer stableTimeTimer;
     Timer flickeringTimeTimer;
 
-    private Timer openCageTimer;
-    private Timer twoSecondsAfterEdgeWait;
-    private boolean[]freezeForTwoSecondsAfterReachingAnEdge;
+    private Timer openTheCageTimer;
 
-    private final Font smallFont = new Font("Helvetica", Font.BOLD, 18);
+    private final  Font smallFont = new Font("Helvetica", Font.BOLD, 18);
 
     private int pacAnimCount = PAC_ANIM_DELAY;
     private int pacAnimDir = 1;
 
     private int N_GHOSTS = 6;
-    private int pacsLeft, score;
+    private int pacsLeft;
     private int[] dx, dy;
     private int[] ghost_x, ghost_y, ghost_dx, ghost_dy, ghostSpeed;
     private boolean[] reachedEdge=new boolean[N_GHOSTS];
@@ -79,6 +78,7 @@ public class Board extends JPanel implements ActionListener {
     private short[] boardData;
 
     private int req_dx, req_dy, view_dx, view_dy;
+    GameToolBar gameToolBar;
 
 
     // 1 : left corner - blocked from left
@@ -214,10 +214,13 @@ public class Board extends JPanel implements ActionListener {
     private int level;
     private int _selectedBoard;
 
-    public Board(int selectedBoard, Game game,int level) {
+    public Board(int selectedBoard, Game game,int level,GameToolBar gameToolBar) {
 
         layout=new SpringLayout();
         setLayout(layout);
+        if(level!=1) {
+            this.gameToolBar=gameToolBar;
+        }
 
 
         this._game=game;
@@ -234,6 +237,7 @@ public class Board extends JPanel implements ActionListener {
                     boardData=board3Data;
                     break;
             }
+
 
         loadImages();
         initVariables();
@@ -270,11 +274,11 @@ public class Board extends JPanel implements ActionListener {
         tenSecTimer.setInitialDelay(10000);
         threeSecTimer=new Timer(3000,this);
         stableTimeTimer =new Timer(3000,this);
-        openCageTimer=new Timer(7000,this);
-        openCageTimer.start();
         flickeringTimeTimer=new Timer(2000,this);
+        Color tbColor= new Color(96, 255, 6);
         if(level==1){
             pacman=new NicePacman(_selectedBoard,"Nice",BLOCK_SIZE);
+            gameToolBar=new GameToolBar(0,"0");
         }
         else if(level==2)
         {
@@ -284,34 +288,45 @@ public class Board extends JPanel implements ActionListener {
         else {
             pacman=new AngryPacman(_selectedBoard,"Angry",BLOCK_SIZE);
         }
+        openTheCageTimer=new Timer(7000,this);
+        openTheCageTimer.start();
 
     }
 
     private void openTheGhostcage() {
 
         if(!cageOpened)
-            switch (_selectedBoard) {
-                case 1:
-                    screenData[431]-=2; screenData[432]-=2; screenData[400]-=8;screenData[399]-=8;
-                    cageOpened=true;
-                    break;
-                case 2:
-                    screenData[496]-=8; screenData[528]-=2;
-                    cageOpened=true;
-                    break;
-                case 3:
-                    screenData[368]-=8; screenData[400]-=2;
-                    cageOpened=true;
-                    break;
-            }
+        switch (_selectedBoard) {
+            case 1:
+                screenData[431]-=2; screenData[432]-=2; screenData[400]-=8;screenData[399]-=8;
+                break;
+            case 2:
+                screenData[496]-=8; screenData[528]-=2;
+                break;
+            case 3:
+                screenData[368]-=8; screenData[400]-=2;
+                break;
+        }
+        cageOpened=true;
     }
 
     private void moveGhosts(Graphics2D g2d) {
 
-        boolean AllReachedEdge=false;
+        boolean AllReachedEdge = false;
         short i;
         int pos;
         int count;
+
+        if(!cageOpened) {
+            for (i = 0; i < N_GHOSTS; i++) {
+                int x = 16 * BLOCK_SIZE;
+                int y = 16 * BLOCK_SIZE;
+                drawGhost(g2d, x + 1, y + 1);
+                return;
+            }
+
+        }
+
 
         for (i = 0; i < N_GHOSTS; i++) {
             if (ghost_x[i] % BLOCK_SIZE == 0 && ghost_y[i] % BLOCK_SIZE == 0) {
@@ -319,58 +334,58 @@ public class Board extends JPanel implements ActionListener {
 
                 count = 0;
 
-                    if ((screenData[pos] & 1) == 0 && ghost_dx[i] != 1) {
-                        dx[count] = -1;
-                        dy[count] = 0;
-                        count++;
-                    }
+                if ((screenData[pos] & 1) == 0 && ghost_dx[i] != 1) {
+                    dx[count] = -1;
+                    dy[count] = 0;
+                    count++;
+                }
 
-                    if ((screenData[pos] & 2) == 0 && ghost_dy[i] != 1) {
-                        dx[count] = 0;
-                        dy[count] = -1;
-                        count++;
-                    }
+                if ((screenData[pos] & 2) == 0 && ghost_dy[i] != 1) {
+                    dx[count] = 0;
+                    dy[count] = -1;
+                    count++;
+                }
 
-                    if ((screenData[pos] & 4) == 0 && ghost_dx[i] != -1) {
-                        dx[count] = 1;
-                        dy[count] = 0;
-                        count++;
-                    }
+                if ((screenData[pos] & 4) == 0 && ghost_dx[i] != -1) {
+                    dx[count] = 1;
+                    dy[count] = 0;
+                    count++;
+                }
 
-                    if ((screenData[pos] & 8) == 0 && ghost_dy[i] != -1) {
-                        dx[count] = 0;
-                        dy[count] = 1;
-                        count++;
-                    }
+                if ((screenData[pos] & 8) == 0 && ghost_dy[i] != -1) {
+                    dx[count] = 0;
+                    dy[count] = 1;
+                    count++;
+                }
 
-                    if (count == 0) {
+                if (count == 0) {
 
-                        if ((screenData[pos] & 15) == 15) {
-                            ghost_dx[i] = 0;
-                            ghost_dy[i] = 0;
-                        } else {
-                            ghost_dx[i] = -ghost_dx[i];
-                            ghost_dy[i] = -ghost_dy[i];
-                        }
-
-
+                    if ((screenData[pos] & 15) == 15) {
+                        ghost_dx[i] = 0;
+                        ghost_dy[i] = 0;
                     } else {
-
-                        count = (int) (Math.random() * count);
-
-                        if (count > 3) {
-                            count = 3;
-                        }
-
-                        ghost_dx[i] = dx[count];
-                        ghost_dy[i] = dy[count];
+                        ghost_dx[i] = -ghost_dx[i];
+                        ghost_dy[i] = -ghost_dy[i];
                     }
+
+
+                } else {
+
+                    count = (int) (Math.random() * count);
+
+                    if (count > 3) {
+                        count = 3;
+                    }
+
+                    ghost_dx[i] = dx[count];
+                    ghost_dy[i] = dy[count];
+                }
 
 
 
             }
 
-            if (!AllReachedEdge & cageOpened) {
+            if (!AllReachedEdge) {
 
 
                 pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
@@ -460,6 +475,7 @@ public class Board extends JPanel implements ActionListener {
 
             movePacman();
             drawPacman(g2d);
+
             moveGhosts(g2d);
             checkMaze();
         }
@@ -497,11 +513,8 @@ public class Board extends JPanel implements ActionListener {
 
         if (finished) {
 
-            score += 50;
-            _game.moveTonextLevel(level,_selectedBoard);
+            _game.moveTonextLevel(level,_selectedBoard,gameToolBar);
             this.setVisible(false);
-
-
 
 
            if (N_GHOSTS < MAX_GHOSTS) {
@@ -512,7 +525,7 @@ public class Board extends JPanel implements ActionListener {
                 currentSpeed++;
             }
 
-            initLevel();
+//            initLevel();
         }
     }
 
@@ -522,6 +535,8 @@ public class Board extends JPanel implements ActionListener {
 
         if (pacsLeft == 0) {
             inGame = false;
+            MainMenu menu=new MainMenu();
+            _game.endGame();
         }
 
         continueLevel();
@@ -549,58 +564,58 @@ public class Board extends JPanel implements ActionListener {
                 boolean scored = false;
                 //give points to energy pill
                 if (pos == 31 || pos == 0 || pos == 1023 | pos == 992) {
-                    score = score + 50;
+                    gameToolBar.addScore(50);
                     scored=true;
                 }
                 //pineapple score
                 else if (pos == 704 | pos == 1011) {
-                    score = score + 100;
+                    gameToolBar.addScore(100);
                     scored=true;
                 }
                 //apple scores
                 else if (pos == 13 || pos == 810) {
-                    score = score + 200;
+                    gameToolBar.addScore(200);
                     scored = true;
                 }
 
                     if (level > 1) {
                         // pine apple scores level>1
                         if (pos == 831 | pos == 20) {
-                            score = score + 100;
+                            gameToolBar.addScore(100);
                             scored = true;
                         }
                         // apple score level>1
                         else if (pos == 703 || pos == 128) {
-                            score = score + 200;
+                            gameToolBar.addScore(200);
                             scored = true;
                         }
                         //strawberry score level>1
                         else if (pos == 130) {
-                            score = score + 300;
+                            gameToolBar.addScore(300);
                             scored = true;
                         }
 
                         if (level > 2) {
                             //pineapple score level>2
                             if (pos == 1001) {
-                                score = score + 100;
+                                gameToolBar.addScore(100);
                                 scored = true;
                             }
                             // apple score level>2
                             else if (pos == 587) {
-                                score = score + 200;
+                                gameToolBar.addScore(200);
                                 scored = true;
                             }
                             //strawberry score level>2
                             else if (pos == 596) {
-                                score = score + 300;
+                                gameToolBar.addScore(300);
                                 scored = true;
                             }
 
                         }
                     }
                     if (!scored) {
-                    score = score + 10;
+                    gameToolBar.addScore(10);
                 }
 
                 //if not scored yet then it is a regular pill
@@ -1057,7 +1072,6 @@ public class Board extends JPanel implements ActionListener {
     private void initGame() {
 
         pacsLeft = 3;
-        score = 0;
         initLevel();
         N_GHOSTS = 6;
         currentSpeed = 3;
@@ -1114,16 +1128,13 @@ public class Board extends JPanel implements ActionListener {
 
     private void drawToolbar(Graphics2D g) {
 
-        String s;
-        String time;
-        int i;
 
+        int i;
         g.setFont(smallFont);
         g.setColor(new Color(96, 255, 6));
-        s = "Score: " + score;
-        g.drawString(s, SCREEN_SIZE / 2 -280, SCREEN_SIZE + 25);
-        time=_game.getTimerTime();
-        g.drawString(time,SCREEN_SIZE / 2 -180, SCREEN_SIZE + 25);
+        g.drawString("Score "+String.valueOf(gameToolBar.getScore()), SCREEN_SIZE / 2 -280, SCREEN_SIZE + 25);
+        gameToolBar.setTime(_game.getTimerTime());
+        g.drawString(gameToolBar.getTime(),SCREEN_SIZE / 2 -180, SCREEN_SIZE + 25);
 
         for (i = 0; i < pacsLeft; i++) {
             g.drawImage(pacman.get_pacman3left(), i * 28 +8, SCREEN_SIZE +10, this);
@@ -1205,8 +1216,11 @@ public class Board extends JPanel implements ActionListener {
              else {
                 if (key == 32) {
                     inGame = true;
-                    initGame();
-                    _game.startCountTime();
+
+                    if(level==1){
+                        initGame();
+                        _game.startCountTime();
+                    }
                     tenSecTimer.start();
                 }
                 //'b' was pressed - back to main menu
@@ -1252,7 +1266,9 @@ public class Board extends JPanel implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if((e.getSource().equals(timer))){
+        if(e.getSource().equals(openTheCageTimer))
+            openTheGhostcage();
+        else if((e.getSource().equals(timer))){
             repaint();
         }
         else if(e.getSource().equals(tenSecTimer))
@@ -1262,9 +1278,6 @@ public class Board extends JPanel implements ActionListener {
             tenSecTimer.stop();
             threeSecTimer.start();
         }
-        if (e.getSource().equals(openCageTimer)) {
-            openTheGhostcage();
-            openCageTimer.stop(); }
         else if(e.getSource().equals(threeSecTimer)) {
             threeSecTranparent=false;
             threeSecTimer.stop();

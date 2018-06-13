@@ -28,37 +28,37 @@ public class Game extends JFrame  implements ActionListener{
         setResizable(false);
     }
 
-    public void moveTonextLevel(int currentLevel,int curboard) {
+    public void moveTonextLevel(int currentLevel,int curboard,GameToolBar gameToolBar) {
         Board b;
         if(currentLevel==1) {
             if(curboard==1) {
                 if(Math.random()>0.5) {
-                    b=new Board(2,this,2);
+                    b=new Board(2,this,2,gameToolBar);
                     add(b);
                 }
                 else {
-                    b=new Board(3,this,2);
+                    b=new Board(3,this,2,gameToolBar);
                     add(b);
                 }
             }
             else if(curboard==2) {
                 if(Math.random()>0.5) {
-                    b=new Board(1,this,2);
+                    b=new Board(1,this,2,gameToolBar);
                     add(b);
                 }
                 else {
-                    b=new Board(3,this,2);
+                    b=new Board(3,this,2,gameToolBar);
                     add(b);
                 }
 
             }
             else {
                 if(Math.random()>0.5) {
-                    b=new Board(2,this,2);
+                    b=new Board(2,this,2,gameToolBar);
                     add(b);
                 }
                 else {
-                    b=new Board(1,this,2);
+                    b=new Board(1,this,2,gameToolBar);
                     add(b);
                 }
             }
@@ -66,15 +66,15 @@ public class Game extends JFrame  implements ActionListener{
         }
         else if (currentLevel==2) {
             if(selectedBoard==1&&curboard==2||curboard==1&&selectedBoard==2) {
-                b=new Board(3,this,3);
+                b=new Board(3,this,3,gameToolBar);
                 add(b);
             }
             else if(selectedBoard==1&&curboard==3||curboard==1&&selectedBoard==3) {
-                b=new Board(2,this,3);
+                b=new Board(2,this,3,gameToolBar);
                 add(b);
             }
             else {
-                b=new Board(1,this,3);
+                b=new Board(1,this,3,gameToolBar);
                 add(b);
             }
         }
@@ -93,9 +93,10 @@ public class Game extends JFrame  implements ActionListener{
     public String getTimerTime() {
        return countDownTimer.timeLabel.getText();
     }
+    public void endGame(){this.dispose();}
 
     private void initUI() {
-        board=new Board(selectedBoard,this,1);
+        board=new Board(selectedBoard,this,1,null);
         ImageIcon fast_forward_img=new ImageIcon("src\\Resources\\fast_forward.png");
         fast_forward=new JButton("",fast_forward_img);
         fast_forward.setBorder(BorderFactory.createEmptyBorder());
