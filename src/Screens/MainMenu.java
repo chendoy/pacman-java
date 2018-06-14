@@ -6,16 +6,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainMenu extends JFrame implements ActionListener {
 
+    public List<String> scoresList;
     private JButton startGame;
     private JButton exitGame;
     private JButton chooseBoard;
     private JButton board1Button;
     private JButton board2Button;
     private JButton board3Button;
+    private JButton highscoresButton;
     private int selectedBoard=0;
     private JLabel v1;
     private JLabel v2;
@@ -26,10 +33,11 @@ public class MainMenu extends JFrame implements ActionListener {
     public MainMenu() {
         super("PAC-MAN");
 
+        loadHighScoresFromFile();
 
         setupBoard();
 
-        this.setSize(1000, 920);
+        this.setSize(1000, 1000);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
         setResizable(false);
@@ -55,6 +63,7 @@ public class MainMenu extends JFrame implements ActionListener {
         ImageIcon exit_game_icon=new ImageIcon("src\\Resources\\exit.JPG");
         ImageIcon choose_board=new ImageIcon("src\\Resources\\choose.JPG");
         ImageIcon v_icon=new ImageIcon("src\\Resources\\v.png");
+        ImageIcon high_scores=new ImageIcon("src\\Resources\\high_scores.png");
 
         JLabel title_panel=new JLabel(pacman_pretty_title);
         getContentPane().add(title_panel);
@@ -76,9 +85,13 @@ public class MainMenu extends JFrame implements ActionListener {
         board3Button=new JButton("",board3_thumbnail);
         board3Button.setBorder(BorderFactory.createEmptyBorder());
 
+        highscoresButton=new JButton("",high_scores);
+        highscoresButton.setBorder(BorderFactory.createEmptyBorder());
+
         board1Button.addActionListener(this);
         board2Button.addActionListener(this);
         board3Button.addActionListener(this);
+        highscoresButton.addActionListener(this);
 
         startGame = new JButton("",start_game_icon);
         startGame.setBorder(BorderFactory.createEmptyBorder());
@@ -98,6 +111,7 @@ public class MainMenu extends JFrame implements ActionListener {
         getContentPane().add(board1Button);
         getContentPane().add(board2Button);
         getContentPane().add(board3Button);
+        getContentPane().add(highscoresButton);
 
 
         layout.putConstraint(SpringLayout.NORTH,board1Button,300,SpringLayout.NORTH,getContentPane());
@@ -113,9 +127,32 @@ public class MainMenu extends JFrame implements ActionListener {
         layout.putConstraint(SpringLayout.WEST,exitGame,400,SpringLayout.WEST,getContentPane());
         layout.putConstraint(SpringLayout.WEST,startGame,320,SpringLayout.WEST,getContentPane());
         layout.putConstraint(SpringLayout.NORTH,startGame,680,SpringLayout.NORTH,getContentPane());
-        layout.putConstraint(SpringLayout.NORTH,exitGame,780,SpringLayout.NORTH,getContentPane());
+        layout.putConstraint(SpringLayout.NORTH,exitGame,860,SpringLayout.NORTH,getContentPane());
+        layout.putConstraint(SpringLayout.NORTH,highscoresButton,770,SpringLayout.NORTH,getContentPane());
+        layout.putConstraint(SpringLayout.WEST,highscoresButton,300,SpringLayout.WEST,getContentPane());
 
         this.setResizable(false);
+    }
+
+    private void loadHighScoresFromFile() {
+        try
+        {
+            FileInputStream fis = new FileInputStream("src\\Resources\\high_score.bin");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            this.scoresList = (ArrayList) ois.readObject();
+            ois.close();
+            fis.close();
+        }catch(IOException ioe){
+            ioe.printStackTrace();
+            return;
+        }catch(ClassNotFoundException c){
+            //System.out.println("Class not found");
+            c.printStackTrace();
+            return;
+        }
+        for(String tmp: scoresList){
+            //System.out.println(tmp);
+        }
     }
 
     @Override
@@ -152,6 +189,10 @@ public class MainMenu extends JFrame implements ActionListener {
             selectedBoard=3;
             showv3(layout);
             v3.setVisible(true);
+        }
+        else if(e.getSource().equals(highscoresButton)) {
+            HighScores highScores = new HighScores(scoresList);
+            dispose();
         }
     }
     public static void main(String[] args) {

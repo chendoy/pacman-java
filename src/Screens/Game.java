@@ -5,12 +5,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
 public class Game extends JFrame  implements ActionListener{
 
-
+    public List<String> scoresList;
     private int selectedBoard;
     private int currentLevel;
     private CountDownTimer countDownTimer;
@@ -21,11 +24,13 @@ public class Game extends JFrame  implements ActionListener{
     public Game(int selectedBoard) {
         currentLevel=1;
         this.selectedBoard=selectedBoard;
-        ImageIcon icon = new ImageIcon("src\\Resources\\icon.png");
         countDownTimer=new CountDownTimer();
+        ImageIcon icon = new ImageIcon("src\\Resources\\icon.png");
         this.setIconImage(icon.getImage());
+        loadHighScoresFromFile();
         initUI();
         setResizable(false);
+
     }
 
     public void moveTonextLevel(int currentLevel,int curboard,GameToolBar gameToolBar) {
@@ -93,7 +98,11 @@ public class Game extends JFrame  implements ActionListener{
     public String getTimerTime() {
        return countDownTimer.timeLabel.getText();
     }
-    public void endGame(){this.dispose();}
+    public void endGame(int score){
+        String name=JOptionPane.showInputDialog(null,"Enter your name:");
+        scoresList.add(0,name); scoresList.add(1,((Integer)score).toString());
+        saveHighScoresToFile();
+        this.dispose();}
 
     private void initUI() {
         board=new Board(selectedBoard,this,1,null);
@@ -119,6 +128,32 @@ public class Game extends JFrame  implements ActionListener{
 
     }
 
+    private void loadHighScoresFromFile() {
+        try
+        {
+            FileInputStream fis = new FileInputStream("src\\Resources\\high_score.bin");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            this.scoresList = (ArrayList) ois.readObject();
+            ois.close();
+            fis.close();
+        }catch(Exception e){
+           this.scoresList=new ArrayList<>();
+        }
+    }
+
+
+    public void saveHighScoresToFile() {
+        try{
+            // Serialize data object to a file
+            FileOutputStream fos= new FileOutputStream("src\\Resources\\high_score.bin");
+            ObjectOutputStream oos= new ObjectOutputStream(fos);
+            oos.writeObject(scoresList);
+            oos.close();
+            fos.close();
+        }catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

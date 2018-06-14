@@ -543,8 +543,9 @@ public class Board extends JPanel implements ActionListener {
 
         if (pacsLeft == 0) {
             inGame = false;
+            _game.endGame(gameToolBar.getScore());
             MainMenu menu=new MainMenu();
-            _game.endGame();
+
         }
 
         continueLevel();
