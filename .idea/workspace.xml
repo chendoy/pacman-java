@@ -2,35 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a6eac23-0e55-4098-9658-fc85e4aa41fd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/AngryPacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/AngryPacman.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board$TAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board$TAdapter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/DefendedPacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/DefendedPacman.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Ghost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Ghost.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/GreenGhost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/GreenGhost.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/NicePacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/NicePacman.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Pacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/StaticElement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/StaticElement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Visited.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Visited.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Visitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/CountDownTimer$CountTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/CountDownTimer$CountTimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/CountDownTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/CountDownTimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/GameToolBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/GameToolBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/InfoPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/InfoPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/PacManTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/PacManTimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/TimerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/TimerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/Screens/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Screens/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/Screens/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Screens/MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/Screens/SummaryScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Screens/SummaryScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/RedGhost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/RedGhost.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/YellowGhost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/YellowGhost.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Packman/Resources/ghost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Packman/Resources/red_ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Resources/red_ghost.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Packman/Resources/yellow_ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Resources/yellow_ghost.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameComponents/AngryPacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/AngryPacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameComponents/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameComponents/DefendedPacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/DefendedPacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameComponents/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/Ghost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameComponents/GreenGhost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/GreenGhost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameComponents/NicePacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/NicePacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameComponents/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/GhostOrange.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/GhostRed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameComponents/RedGhost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/RedGhost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameComponents/YellowGhost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/YellowGhost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/ghost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/red_ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/red_ghost.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/yellow_ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/yellow_ghost.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,11 +42,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameComponents/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="270" column="37" lean-forward="true" selection-start-line="270" selection-start-column="37" selection-end-line="270" selection-end-column="37" />
+            <state relative-caret-position="197">
+              <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JComponent.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.desktop/javax/swing/JComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17085">
+              <caret line="1073" selection-start-line="1073" selection-end-line="1073" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Screens/MainMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2074">
+              <caret line="127" column="30" selection-start-line="127" selection-start-column="22" selection-end-line="127" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,34 +87,33 @@
       <file leaf-file-name="GreenGhost.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameComponents/GreenGhost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-44">
-              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="82" />
+            <state relative-caret-position="612">
+              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#541#542#0" expanded="true" />
-                <element signature="e#577#578#0" expanded="true" />
+                <element signature="e#465#466#0" expanded="true" />
+                <element signature="e#498#499#0" expanded="true" />
+                <element signature="e#551#552#0" expanded="true" />
+                <element signature="e#595#596#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RedGhost.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameComponents/RedGhost.java">
+      <file leaf-file-name="DefendedPacman.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GameComponents/DefendedPacman.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="YellowGhost.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="YellowGhost.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameComponents/YellowGhost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="527">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,42 +121,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Visitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameComponents/Visitor.java">
+      <file leaf-file-name="AngryPacman.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GameComponents/AngryPacman.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Ghost.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameComponents/Ghost.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NicePacman.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameComponents/NicePacman.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+            <state relative-caret-position="204">
+              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
               <folding>
-                <element signature="e#276#277#0" expanded="true" />
-                <element signature="e#311#312#0" expanded="true" />
+                <element signature="e#278#279#0" expanded="true" />
+                <element signature="e#309#310#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pacman.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameComponents/Pacman.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -147,36 +146,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>drawghost</find>
-      <find>public game</find>
-      <find>death</find>
-      <find>draw</find>
-      <find>drawT</find>
-      <find>timer</find>
-      <find>open</find>
-      <find>Timer</find>
-      <find>repai</find>
-      <find>doDr</find>
-      <find>moveGh</find>
-      <find>screenData</find>
-      <find>initBoard</find>
-      <find>moveG</find>
-      <find>drawGhost</find>
-      <find>ghost_x[i]</find>
-      <find>moveGho</find>
-      <find>moveGhos</find>
-      <find>movePacman</find>
-      <find>move</find>
-      <find>board</find>
-      <find>dying</find>
-      <find>N_GHOSTS</find>
-      <find>GHOSTS</find>
-      <find>GHOST</find>
-      <find>pacman</find>
+      <find>initLevel</find>
       <find>ghost</find>
-      <find>n_ghost</find>
+      <find>drawgh</find>
       <find>ghost_x</find>
-      <find>MAX_GHOSTS</find>
+      <find>angr</find>
+      <find>Angry</find>
+      <find>nicepac</find>
+      <find>Defended</find>
+      <find>angrypacman</find>
+      <find>defen</find>
+      <find>vis</find>
+      <find>die</find>
+      <find>defendedpac</find>
+      <find>drawpacman</find>
+      <find>drawGhost</find>
+      <find>sectimer</find>
+      <find>ghostArr</find>
+      <find>fivesectimer</find>
+      <find>twoSecFlickeringTime</find>
+      <find>flickeringTimeTimer</find>
+      <find>fiveSecTimerStarted</find>
+      <find>fiveSecTimerDisaapear</find>
+      <find>new game</find>
+      <find>currentLevel</find>
+      <find>level</find>
+      <find>gameToolBar</find>
+      <find>dying</find>
+      <find>ghostDying</find>
+      <find>drawghost</find>
+      <find>public board</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,22 +208,22 @@
         <option value="$PROJECT_DIR$/src/GameUtilities/Font.java" />
         <option value="$PROJECT_DIR$/src/GameUtilities/GameToolBar.java" />
         <option value="$PROJECT_DIR$/src/GameUtilities/CountDownTimer.java" />
-        <option value="$PROJECT_DIR$/src/Screens/Game.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/Visited.java" />
-        <option value="$PROJECT_DIR$/src/GameComponents/Pacman.java" />
-        <option value="$PROJECT_DIR$/src/GameComponents/DefendedPacman.java" />
-        <option value="$PROJECT_DIR$/src/GameComponents/NicePacman.java" />
-        <option value="$PROJECT_DIR$/src/GameComponents/AngryPacman.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/Visitor.java" />
         <option value="$PROJECT_DIR$/src/greenGhost.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/blueGhost.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/redGhost.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/yellowGhost.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/greenGhost.java" />
-        <option value="$PROJECT_DIR$/src/GameComponents/GreenGhost.java" />
+        <option value="$PROJECT_DIR$/src/GameComponents/AngryPacman.java" />
+        <option value="$PROJECT_DIR$/src/GameComponents/NicePacman.java" />
+        <option value="$PROJECT_DIR$/src/GameComponents/Ghost.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/RedGhost.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/YellowGhost.java" />
-        <option value="$PROJECT_DIR$/src/GameComponents/Ghost.java" />
+        <option value="$PROJECT_DIR$/src/GameComponents/Pacman.java" />
+        <option value="$PROJECT_DIR$/src/GameComponents/DefendedPacman.java" />
+        <option value="$PROJECT_DIR$/src/Screens/Game.java" />
+        <option value="$PROJECT_DIR$/src/GameComponents/GreenGhost.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/Board.java" />
       </list>
     </option>
@@ -249,6 +248,42 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GameComponents" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GameUtilities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Screens" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -283,55 +318,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GameComponents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GameUtilities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
-              <item name="other pacmans color" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oosd_assignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oosd_assignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Screens" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -477,7 +463,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24918672" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24918672" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -489,7 +475,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32898173" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -619,13 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Screens/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="106" column="42" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameUtilities/GameToolBar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -633,39 +612,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.desktop/javax/swing/JComponent.java" />
     <entry file="file://$PROJECT_DIR$/src/GameUtilities/CountDownTimer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="96" selection-start-line="96" selection-end-line="96" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameComponents/DefendedPacman.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameComponents/AngryPacman.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding>
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#309#310#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -684,67 +634,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameComponents/YellowGhost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameComponents/NicePacman.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        <state relative-caret-position="255">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding>
             <element signature="e#276#277#0" expanded="true" />
             <element signature="e#311#312#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameComponents/Pacman.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameComponents/Ghost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameComponents/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="270" column="37" lean-forward="true" selection-start-line="270" selection-start-column="37" selection-end-line="270" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameComponents/GreenGhost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-44">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#541#542#0" expanded="true" />
-            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#384#385#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameComponents/RedGhost.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="527">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameComponents/Pacman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="111" column="20" selection-start-line="111" selection-start-column="20" selection-end-line="111" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameComponents/Ghost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameComponents/AngryPacman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+          <folding>
+            <element signature="e#278#279#0" expanded="true" />
+            <element signature="e#309#310#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameComponents/DefendedPacman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Screens/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2074">
+          <caret line="127" column="30" selection-start-line="127" selection-start-column="22" selection-end-line="127" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameComponents/YellowGhost.java">
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.desktop/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="17085">
+          <caret line="1073" selection-start-line="1073" selection-end-line="1073" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameComponents/GreenGhost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#465#466#0" expanded="true" />
+            <element signature="e#498#499#0" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#595#596#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameComponents/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

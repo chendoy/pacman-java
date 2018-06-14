@@ -11,6 +11,8 @@ abstract class Pacman implements Visited{
     private Image _pacman2up, _pacman2down, _pacman2left, _pacman2right;
     private Image _pacman3up, _pacman3down, _pacman3left, _pacman3right;
     private int pacman_x, pacman_y, pacmand_x, pacmand_y;
+    // 1.is at live, 0.dying
+    protected int lifestate;
 
     public Pacman(int selectedboard,String pacManType,int blockSize) {
         loadImage(pacManType);
@@ -20,6 +22,7 @@ abstract class Pacman implements Visited{
         this.pacman_Anim_Pos=0;
         this.pacmand_x=0;
         this.pacmand_y=0;
+        this.lifestate=1;
         //starting position depends on the board
         if(selectedboard==1)
         {
@@ -101,6 +104,14 @@ abstract class Pacman implements Visited{
     public int get_pacman_Anim_Count() {
         return _pacman_Anim_Count;
     }
+
+    public void die() {
+    lifestate=0;
+    }
+    public void live(){
+        lifestate=1;
+    }
+    public int getLifestate(){return lifestate;}
 
     public void set_pacman_Anim_Count(int _pacman_Anim_Count) {
         this._pacman_Anim_Count = _pacman_Anim_Count;
@@ -281,6 +292,7 @@ abstract class Pacman implements Visited{
     public void setPacmand_y(int pacmand_y) {
         this.pacmand_y = pacmand_y;
     }
+    abstract String getpacmanType();
 
     @Override
      public void impact(Visitor visitor) {

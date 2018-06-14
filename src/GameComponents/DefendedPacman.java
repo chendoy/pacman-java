@@ -9,4 +9,10 @@ public class DefendedPacman extends Pacman {
         visitor.visit(this);
 
     }
+
+
+    @Override
+    String getpacmanType() {
+        return "Defended";
+    }
 }

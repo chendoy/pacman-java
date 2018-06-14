@@ -6,8 +6,9 @@ import java.awt.*;
 public class YellowGhost extends Ghost {
     private Image yellowGhostImage;
 
-    public YellowGhost() {
+    public YellowGhost(int level) {
         super(2,1.5);
+        this.level=level;
         yellowGhostImage=new ImageIcon("src\\Resources\\yellow_ghost.png").getImage();
     }
 
@@ -31,4 +32,5 @@ public class YellowGhost extends Ghost {
     public Image getGhostImage() {
         return yellowGhostImage;
     }
+
 }

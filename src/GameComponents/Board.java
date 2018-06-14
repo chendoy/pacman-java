@@ -21,13 +21,10 @@ public class Board extends JPanel implements ActionListener {
     private final Color dotColor=new Color(192,192,0);
     private Color mazeColor;
     private boolean inGame=false;
-    private boolean dying=false;
 
     private Image ii;
-    Pacman pacman;
-    GreenGhost greenGhost;
-    RedGhost  redGhost;
-    YellowGhost yellowGhost;
+    private Pacman pacman;
+    private Ghost[] ghostArr;
 
 
 
@@ -40,21 +37,22 @@ public class Board extends JPanel implements ActionListener {
     private final int N_BLOCKS=32;
     private final int SCREEN_SIZE=N_BLOCKS*BLOCK_SIZE;
     private final int PAC_ANIM_DELAY=2;
-
-    private final int MAX_GHOSTS = 3;
+    
 
 
     boolean drawRandomFruits;
     boolean drawFruitsForFirstTime;
     boolean threeSecTranparent;
     boolean twoSecFlickeringTime;
+    boolean fiveSecTimerStarted;
     int flip=0;
 
-    short[]randompositionarr;
-    Timer tenSecTimer;
-    Timer threeSecTimer;
-    Timer stableTimeTimer;
-    Timer flickeringTimeTimer;
+//    short[]randompositionarr;
+    private Timer tenSecTimer;
+    private Timer threeSecTimer;
+    private Timer stableTimeTimer;
+    private Timer flickeringTimeTimer;
+    private  Timer fiveSecTimerDisaapear;
 
     private Timer openTheCageTimer;
 
@@ -63,11 +61,11 @@ public class Board extends JPanel implements ActionListener {
     private int pacAnimCount = PAC_ANIM_DELAY;
     private int pacAnimDir = 1;
 
-    private int N_GHOSTS = 3;
+
     private int pacsLeft;
     private int[] dx, dy;
     private int[] ghost_x, ghost_y, ghost_dx, ghost_dy, ghostSpeed;
-    private boolean[] reachedEdge=new boolean[N_GHOSTS];
+    private boolean[] reachedEdge=new boolean[3];
 
     private boolean cageOpened=false;
 
@@ -260,17 +258,22 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void initVariables() {
+        ghostArr=new Ghost[3];
+        ghostArr[0]=new GreenGhost(level);
+        ghostArr[1]=new YellowGhost(level);
+        ghostArr[2]=new RedGhost(level);
         drawRandomFruits =false;
         drawFruitsForFirstTime =false;
         twoSecFlickeringTime=false;
+        fiveSecTimerStarted=false;
         screenData = new short[N_BLOCKS * N_BLOCKS];
         mazeColor = new Color(5, 5, 100);
         d = new Dimension(800, 800);
-        ghost_x = new int[MAX_GHOSTS];
-        ghost_dx = new int[MAX_GHOSTS];
-        ghost_y = new int[MAX_GHOSTS];
-        ghost_dy = new int[MAX_GHOSTS];
-        ghostSpeed = new int[MAX_GHOSTS];
+        ghost_x = new int[ghostArr.length];
+        ghost_dx = new int[ghostArr.length];
+        ghost_y = new int[ghostArr.length];
+        ghost_dy = new int[ghostArr.length];
+        ghostSpeed = new int[ghostArr.length];
         dx = new int[4];
         dy = new int[4];
         timer = new Timer(DELAY, this);
@@ -280,6 +283,8 @@ public class Board extends JPanel implements ActionListener {
         threeSecTimer=new Timer(3000,this);
         stableTimeTimer =new Timer(3000,this);
         flickeringTimeTimer=new Timer(2000,this);
+        fiveSecTimerDisaapear=new Timer(5000,this);
+
         Color tbColor= new Color(96, 255, 6);
         if(level==1){
             pacman=new NicePacman(_selectedBoard,"Nice",BLOCK_SIZE);
@@ -293,9 +298,8 @@ public class Board extends JPanel implements ActionListener {
         else {
             pacman=new AngryPacman(_selectedBoard,"Angry",BLOCK_SIZE);
         }
-        greenGhost=new GreenGhost();
-        yellowGhost=new YellowGhost();
-        redGhost=new RedGhost();
+
+
         openTheCageTimer=new Timer(7000,this);
         openTheCageTimer.start();
 
@@ -326,17 +330,17 @@ public class Board extends JPanel implements ActionListener {
         int count;
 
         if(!cageOpened) {
-            for (i = 0; i < N_GHOSTS; i++) {
+            for (i = 0; i < ghostArr.length; i++) {
                 int x = 16 * BLOCK_SIZE;
-                int y = 16 * BLOCK_SIZE;
-                drawGhost(g2d, x + 1, y + 1);
+                int y = 17 * BLOCK_SIZE;
+                drawGhost(ghostArr[i],g2d, x , y);
                 return;
             }
 
         }
 
 
-        for (i = 0; i < N_GHOSTS; i++) {
+        for (i = 0; i < ghostArr.length; i++) {
             if (ghost_x[i] % BLOCK_SIZE == 0 && ghost_y[i] % BLOCK_SIZE == 0) {
                 pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
 
@@ -389,8 +393,6 @@ public class Board extends JPanel implements ActionListener {
                     ghost_dy[i] = dy[count];
                 }
 
-
-
             }
 
             if (!AllReachedEdge) {
@@ -420,37 +422,56 @@ public class Board extends JPanel implements ActionListener {
             ghost_x[i] = ghost_x[i] + (ghost_dx[i] * ghostSpeed[i]);
             ghost_y[i] = ghost_y[i] + (ghost_dy[i] * ghostSpeed[i]);
 
-            drawGhost(g2d, ghost_x[i] + 1, ghost_y[i] + 1);
+            if (i==0&&!((GreenGhost)ghostArr[i]).isGhostvisible())
+            {
+                if(!fiveSecTimerStarted){
+                    fiveSecTimerDisaapear.start();
+                }
+            }
+            else if(i==0&&((GreenGhost)ghostArr[i]).isGhostDying()) {
+                // do not paint ghost
+            }
+            else {
+                drawGhost(ghostArr[i],g2d, ghost_x[i] + 1, ghost_y[i] + 1);
+            }
 
+
+
+            //this function will occur on impact between ghost and pacman
             if (pacman.getPacman_x() > (ghost_x[i] - 12) && pacman.getPacman_x() < (ghost_x[i] + 12)
                     && pacman.getPacman_y() > (ghost_y[i] - 12) && pacman.getPacman_y() < (ghost_y[i] + 12)
                     && inGame) {
+                if(pacman.getpacmanType().equals("Nice")) {
+                    ghostArr[i].visit((NicePacman)pacman);
+                }
+                else if(pacman.getpacmanType().equals("Defended")) {
+                    ghostArr[i].visit((DefendedPacman)pacman);
+                }
+                else {
+                     ghostArr[i].visit((AngryPacman)pacman);
+                }
 
-                dying = true;
             }
 
         }
 
-            /*checks when a ghosts reaches an edges
-              why? in order to close the edge path constraints we apply at first (they aren't needed anymore)
-             */
 
-        for(i=0;i<N_GHOSTS;i++) {
+        for(i=0;i<ghostArr.length;i++) {
             pos =ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
             if(pos==1023)
                 reachedEdge[i]=true;
         }
         AllReachedEdge=true;
-        for(i=0;i<N_GHOSTS;i++) {
+        for(i=0;i<ghostArr.length;i++) {
            if(reachedEdge[i]==false)
                AllReachedEdge=false;
         }
 
     }
 
-    private void drawGhost(Graphics2D g2d, int x, int y) {
+    private void drawGhost(Ghost ghost,Graphics2D g2d, int x, int y) {
 
-        g2d.drawImage(ghost, x, y, this);
+        g2d.drawImage(ghost.getGhostImage(), x, y, this);
     }
 
     @Override
@@ -475,7 +496,8 @@ public class Board extends JPanel implements ActionListener {
 
     private void playGame(Graphics2D g2d) {
 
-        if (dying) {
+        //if pacman dies his life state is 0
+        if (pacman.getLifestate()==0) {
 
             death();
 
@@ -525,9 +547,6 @@ public class Board extends JPanel implements ActionListener {
             this.setVisible(false);
 
 
-           if (N_GHOSTS < MAX_GHOSTS) {
-               N_GHOSTS++;
-          }
 
             if (currentSpeed < maxSpeed) {
                 currentSpeed++;
@@ -1081,7 +1100,6 @@ public class Board extends JPanel implements ActionListener {
 
         pacsLeft = 3;
         initLevel();
-        N_GHOSTS = 3;
         currentSpeed = 3;
 
     }
@@ -1105,7 +1123,7 @@ public class Board extends JPanel implements ActionListener {
         int dx = 1;
         int random;
 
-        for (i = 0; i < N_GHOSTS; i++) {
+        for (i = 0; i < ghostArr.length; i++) {
 
             ghost_y[i] = 16 * BLOCK_SIZE;
             ghost_x[i] = 16 * BLOCK_SIZE;
@@ -1130,7 +1148,7 @@ public class Board extends JPanel implements ActionListener {
         req_dy = 0;
         view_dx = -1;
         view_dy = 0;
-        dying = false;
+        pacman.live();
 
     }
 
@@ -1153,7 +1171,7 @@ public class Board extends JPanel implements ActionListener {
 
     private void loadImages() {
 
-        ghost = new ImageIcon("src\\Resources\\ghost.png").getImage();
+
         imgRegularPill = new ImageIcon("src\\Resources\\regpill.png").getImage();
         imgEnergyPill = new ImageIcon("src\\Resources\\energyPill.png").getImage();
         imgPineApple = new ImageIcon("src\\Resources\\pineapple.png").getImage();
@@ -1165,6 +1183,7 @@ public class Board extends JPanel implements ActionListener {
         imgTransparentStrawberry=new ImageIcon("src\\Resources\\transparentApple.png").getImage();
         fastForwardImg=new ImageIcon("src\\Resources\\fast_forward.png").getImage();
     }
+
 
     @Override
     public void paintComponent(Graphics g) {
@@ -1272,6 +1291,11 @@ public class Board extends JPanel implements ActionListener {
             isFF=true;
         }
     }
+    public  void startFiveSecTimer()
+    {
+        fiveSecTimerDisaapear.start();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(openTheCageTimer))
@@ -1290,6 +1314,11 @@ public class Board extends JPanel implements ActionListener {
             threeSecTranparent=false;
             threeSecTimer.stop();
 //            stableTimeTimer.start();
+        }
+        else if (e.getSource().equals(fiveSecTimerDisaapear)) {
+            ((GreenGhost)ghostArr[0]).setGhostvisible(true);
+            fiveSecTimerDisaapear.stop();
+            fiveSecTimerStarted=false;
         }
 //        else if(e.getSource().equals(stableTimeTimer))
 //        {
