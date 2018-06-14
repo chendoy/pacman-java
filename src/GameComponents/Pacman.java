@@ -283,7 +283,7 @@ abstract class Pacman implements Visited{
     }
 
     @Override
-    public void impact(Visitor visitor) {
+     public void impact(Visitor visitor) {
 
     }
 }

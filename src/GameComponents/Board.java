@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Random;
+
 
 public class Board extends JPanel implements ActionListener {
 
@@ -22,8 +22,13 @@ public class Board extends JPanel implements ActionListener {
     private Color mazeColor;
     private boolean inGame=false;
     private boolean dying=false;
+
     private Image ii;
     Pacman pacman;
+    GreenGhost greenGhost;
+    RedGhost  redGhost;
+    YellowGhost yellowGhost;
+
 
 
     private boolean isFF=false; //is Fast Forward on?
@@ -36,7 +41,7 @@ public class Board extends JPanel implements ActionListener {
     private final int SCREEN_SIZE=N_BLOCKS*BLOCK_SIZE;
     private final int PAC_ANIM_DELAY=2;
 
-    private final int MAX_GHOSTS = 12;
+    private final int MAX_GHOSTS = 3;
 
 
     boolean drawRandomFruits;
@@ -58,7 +63,7 @@ public class Board extends JPanel implements ActionListener {
     private int pacAnimCount = PAC_ANIM_DELAY;
     private int pacAnimDir = 1;
 
-    private int N_GHOSTS = 6;
+    private int N_GHOSTS = 3;
     private int pacsLeft;
     private int[] dx, dy;
     private int[] ghost_x, ghost_y, ghost_dx, ghost_dy, ghostSpeed;
@@ -288,6 +293,9 @@ public class Board extends JPanel implements ActionListener {
         else {
             pacman=new AngryPacman(_selectedBoard,"Angry",BLOCK_SIZE);
         }
+        greenGhost=new GreenGhost();
+        yellowGhost=new YellowGhost();
+        redGhost=new RedGhost();
         openTheCageTimer=new Timer(7000,this);
         openTheCageTimer.start();
 
@@ -1073,7 +1081,7 @@ public class Board extends JPanel implements ActionListener {
 
         pacsLeft = 3;
         initLevel();
-        N_GHOSTS = 6;
+        N_GHOSTS = 3;
         currentSpeed = 3;
 
     }

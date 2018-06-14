@@ -1,39 +1,28 @@
 package GameComponents;
 
-public class Ghost implements Visitor{
+import java.awt.*;
 
-    private int type;
-    private double speed;
+abstract public class Ghost implements Visitor{
+
+    protected int type;
+    protected double speed;
+
+    protected int ghost_x, ghost_y, ghost_dx, ghost_dy;
 
 
-    public Ghost(int type) {
+    public Ghost(int type,double speed) {
         this.type=type;
-        switch (type)
-        {
-            case 1: //green
-                speed=3;
-                break;
-            case 2: //yellow
-                speed=1.5;
-                break;
-            case 3: //red
-                speed=1;
-                break;
-        }
+        this.speed=speed;
     }
 
     @Override
-    public void visit(NicePacman nicePacman) {
-
-    }
+    abstract public void visit(NicePacman nicePacman);
 
     @Override
-    public void visit(DefendedPacman defendedPacman) {
-
-    }
+    abstract public void visit(DefendedPacman defendedPacman);
 
     @Override
-    public void visit(AngryPacman angryPacman) {
+    abstract   public void visit(AngryPacman angryPacman);
 
-    }
+    abstract public Image getGhostImage();
 }
