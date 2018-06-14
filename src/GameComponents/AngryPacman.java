@@ -10,4 +10,9 @@ public class AngryPacman extends Pacman {
     public void impact(Visitor visitor) {
     visitor.visit(this);
     }
+
+    @Override
+    String getpacmanType() {
+        return "Angry";
+    }
 }

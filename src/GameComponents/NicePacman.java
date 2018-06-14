@@ -10,4 +10,9 @@ public class NicePacman extends Pacman {
     public void impact(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    String getpacmanType() {
+        return "Nice";
+    }
 }

@@ -6,8 +6,8 @@ abstract public class Ghost implements Visitor{
 
     protected int type;
     protected double speed;
+    protected int level;
 
-    protected int ghost_x, ghost_y, ghost_dx, ghost_dy;
 
 
     public Ghost(int type,double speed) {
