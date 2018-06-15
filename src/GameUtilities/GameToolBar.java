@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class GameToolBar {
     int score;
+    int level;
+    int liveLeft;
     private String time;
     private int fruits;
 
@@ -13,8 +15,21 @@ public class GameToolBar {
         this.score = score;
         this.time = time;
         this.fruits=0;
+        level=1;
+        liveLeft=3;
 
-
+    }
+    public void increaseLevel() {
+        level=level+1;
+    }
+    public void decreaseLife() {
+        liveLeft=liveLeft-1;
+    }
+    public int getLifeLeft() {
+        return liveLeft;
+    }
+    public int getLevel(){
+        return level;
     }
 
     public int getScore() {

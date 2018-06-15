@@ -53,17 +53,14 @@ public class Board extends JPanel{
     private int pacAnimDir = 1;
 
 
-    private int pacsLeft;
     private int[] dx, dy;
     private int[] ghost_x, ghost_y, ghost_dx, ghost_dy, ghostSpeed;
     private boolean[] reachedEdge=new boolean[3];
 
     private boolean cageOpened=false;
 
-    private Image ghost;
-    private Image  fastForwardImg;
 
-    private Image imgRegularPill,imgEnergyPill,imgPineApple,imgApple,imgStrawberry;
+    private Image imgEnergyPill,imgPineApple,imgApple,imgStrawberry;
     private Image imgTransparentPill;
     private Image imgTransparentPineApple;
     private Image imgTransparentApple;
@@ -99,7 +96,7 @@ public class Board extends JPanel{
             21, 9,  8,  8,  12, 21, 1,  0,  0,  4,  21, 9,  8,   8,   0, 0, 0, 0, 8,  8,  12, 21, 1,  0,  0,  4,  21, 9,  8,  8,  12, 21,
             25, 26, 26, 26, 26, 20, 1,  0,  0,  4,  25, 26, 26,  22,  1, 0, 0, 4, 19, 26, 26, 28, 1,  0,  0,  4,  17, 26, 26, 26, 26, 28,
             3,  2,  2,  2,  6,  21, 1,  0,  0,  0,  2,  2,  6,   21,  1, 0, 0, 4, 21, 3,  2,  2,  0,  0,  0,  4,  21, 3,  2,  2,  2,  6,
-            1,  0,  0,  0,  4,  21, 1,  0,  0,  8,  8,  8,  12,  21,  9, 8, 72, 12,76, 73, 72, 72, 136,  0,  0,  4,  21, 1,  0,  0,  0,  4,
+            1,  0,  0,  0,  4,  21, 1,  0,  0,  8,  8,  8,  12,  21,  9, 8, 72, 12,69, 73, 72, 72, 136,  0,  0,  4,  21, 1,  0,  0,  0,  4,
             1,  0,  0,  0,  4,  21, 1,  0,  4,  19, 26, 26, 26,  24,  26,26,58,26, 24, 26, 26, 26, 150, 1,  0,  4,  21, 1,  0,  0,  0,  4,
             1,  0,  0,  0,  4,  21, 1,  0,  4,  21, 3,  2,  2,   2,   2, 2, 34, 2, 2,  2,  2,  6,  149, 1,  0,  4,  21, 1,  0,  0,  0,  4,
             0,  0,  0,  0,  4,  21, 1,  0,  4,  21, 1,  0,  0,   0,   0, 0, 32, 0, 0,  0,  0,  4,  149, 1,  0,  4,  21, 1,  0,  0,  0,  4,
@@ -108,8 +105,8 @@ public class Board extends JPanel{
             0,  0,  0,  0,  4,  21, 1,  0,  4,  21, 9,  8,  8,   8,   8, 8, 8, 8, 8,  8,  8,  12,  149, 1,  0,  4,  21, 1,  0,  0,  0,  4,
             0,  0,  0,  0,  4,  21, 1,  0,  4,  25, 26, 26, 26,  18,  26,26,26,90,18, 26, 26, 26,  284, 1,  0,  4,  21, 1,  0,  0,  0,  4,
             0,  0,  0,  0,  4,  21, 1,  0,  0,  2,  2,  2,  6,   21,  3, 2, 2, 6, 21, 3,  2,  2,   2,  0,  0,  4,  21, 1,  0,  0,  0,  4,
-            8,  8,  8,  8,  12, 21, 1,  0,  0,  0,  8,  8,  12,  21,  1, 0, 0, 4, 21, 9,  8,  8,   0,  0,  0,  4,  21, 1,  0,  0,  0,  4,
-            19, 26, 26, 26, 26, 20, 1,  0,  0,  4,  19, 26, 26,  28,  1, 0, 0, 4, 25, 26, 26, 22,  1,  0,  0,  4,  17, 26, 26, 26, 26, 21,
+            8,  8,  8,  8,  12, 21, 1,  0,  0,  0,  8,  8,  12,  21,  1, 0, 0, 4, 21, 9,  8,  8,   0,  0,  0,  4,  21, 1,  8,  8,  8,  12,
+            19, 26, 26, 26, 26, 20, 1,  0,  0,  4,  19, 26, 26,  28,  1, 0, 0, 4, 25, 26, 26, 22,  1,  0,  0,  4,  17, 26, 26, 26, 26, 22,
             21, 3,  2,  2,  6,  21, 1,  0,  0,  4,  21, 3,  2,   2,   0, 0, 0, 0, 2,  2,  6,  21,  1,  0,  0,  4,  21, 3,  2,  2,  6,  21,
             21, 1,  0,  0,  4,  21, 1,  0,  0,  4,  21, 1,  0,   0,   0, 0, 0, 0, 0,  0,  4,  21,  1,  0,  0,  4,  21, 1,  0,  0,  0,  21,
             21, 1,  0,  0,  4,  21, 1,  0,  0,  4,  21, 1,  0,   0,   0, 0, 0, 0, 0,  0,  4,  21, 1,  0,  0,  4,  21, 1,  0,  0,  4,  21,
@@ -119,8 +116,9 @@ public class Board extends JPanel{
             21, 3,  2,  2,  6,  21, 1,  0,  0,  0,  0,  0,  4,   21,  1, 0, 0, 4, 21, 1,  0,  0,  0,  0,  0,  4,  21, 3,  2,  2,  6,  21,
             21, 1,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  4,   21,  1, 0, 0, 4, 21, 1,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  4,  21,
             21, 9,  8,  8,  12, 21, 9,  8,  8,  8,  8,  8,  12,  21,  1, 0, 0, 4, 21, 9,  8,  8,  8,  8,  8,  12, 21, 9,  8,  8,  12, 21,
-            25, 26, 26, 26, 26, 24, 26, 26, 26, 26, 26, 26, 26,  28,  9, 8, 8, 12,25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 28,
+            25, 26, 26, 26, 26, 24, 26, 26, 26, 26, 26, 26, 26,  28,  9, 8, 8, 12,25, 26, 26, 26, 26, 26, 26, 26, 24, 26, 26, 26, 26, 28,
     };
+
     //endregion //
 
     //region board2Data, click "+" to view
@@ -606,12 +604,12 @@ public class Board extends JPanel{
 
     private void death() {
 
-        pacsLeft--;
+        gameToolBar.decreaseLife();
 
-        if (pacsLeft == 0) {
+        if (gameToolBar.getLifeLeft() == 0) {
             inGame = false;
             _game.endGame(gameToolBar.getScore());
-            SummaryScreen summaryScreen=new SummaryScreen(pacsLeft,gameToolBar.getScore(),gameToolBar.getFruits(),level,gameToolBar.getTime());
+            SummaryScreen summaryScreen=new SummaryScreen(gameToolBar.getLifeLeft(),gameToolBar.getScore(),gameToolBar.getFruits(),gameToolBar.getLevel(),gameToolBar.getTime());
         }
 
         continueLevel();
@@ -1166,7 +1164,6 @@ public class Board extends JPanel{
 
     private void initGame() {
 
-        pacsLeft = 3;
         initLevel();
         currentSpeed = 3;
 
@@ -1234,18 +1231,18 @@ public class Board extends JPanel{
         g.drawString("Score "+String.valueOf(gameToolBar.getScore()), SCREEN_SIZE / 2 -280, SCREEN_SIZE + 25);
         gameToolBar.setTime(_game.getTimerTime());
         g.drawString(gameToolBar.getTime(),SCREEN_SIZE / 2 -180, SCREEN_SIZE + 25);
-
-        for (i = 0; i < pacsLeft; i++) {
+        g.drawString(" Press 'f' for fast forward",SCREEN_SIZE /2+200 ,SCREEN_SIZE + 25);
+        for (i = 0; i < gameToolBar.getLifeLeft(); i++) {
             g.drawImage(pacman.get_pacman3left(), i * 28 +8, SCREEN_SIZE +10, this);
         }
-        g.drawImage(fastForwardImg, 760, 760, this);
+
 
     }
 
     private void loadImages() {
 
 
-        imgRegularPill = new ImageIcon("src\\Resources\\regpill.png").getImage();
+
         imgEnergyPill = new ImageIcon("src\\Resources\\energyPill.png").getImage();
         imgPineApple = new ImageIcon("src\\Resources\\pineapple.png").getImage();
         imgApple = new ImageIcon("src\\Resources\\apple.png").getImage();
@@ -1254,7 +1251,7 @@ public class Board extends JPanel{
         imgTransparentPineApple=new ImageIcon("src\\Resources\\transparentPineApple.png").getImage();
         imgTransparentApple=new ImageIcon("src\\Resources\\transparentApple.png").getImage();
         imgTransparentStrawberry=new ImageIcon("src\\Resources\\transparentApple.png").getImage();
-        fastForwardImg=new ImageIcon("src\\Resources\\fast_forward.png").getImage();
+
     }
 
 
@@ -1334,6 +1331,9 @@ public class Board extends JPanel{
                     } else if (key == KeyEvent.VK_ESCAPE ) {
                         inGame = false;
                         _game.stopCountTime();
+                    }
+                    else if(key==KeyEvent.VK_F){
+                        fastForward();
                     }
                 }
                 else {

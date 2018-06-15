@@ -11,15 +11,14 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Game extends JFrame  implements ActionListener{
+public class Game extends JFrame  {
 
     public List<String> scoresList;
     private int selectedBoard;
     private int currentLevel;
     private CountDownTimer countDownTimer;
-    private JButton fast_forward;
     private Board board;
-    private GridBagLayout layout;
+
 
     public Game(int selectedBoard) {
         currentLevel=1;
@@ -36,6 +35,7 @@ public class Game extends JFrame  implements ActionListener{
     public void moveTonextLevel(int currentLevel,int curboard,GameToolBar gameToolBar) {
         Board b;
         if(currentLevel==1) {
+            gameToolBar.increaseLevel();
             if(curboard==1) {
                 if(Math.random()>0.5) {
                     b=new Board(2,this,2,gameToolBar);
@@ -70,6 +70,7 @@ public class Game extends JFrame  implements ActionListener{
 
         }
         else if (currentLevel==2) {
+            gameToolBar.increaseLevel();
             if(selectedBoard==1&&curboard==2||curboard==1&&selectedBoard==2) {
                 b=new Board(3,this,3,gameToolBar);
                 add(b);
@@ -84,8 +85,8 @@ public class Game extends JFrame  implements ActionListener{
             }
         }
         else {
-            JOptionPane.showMessageDialog(this,"You Won The Game WELL DONE", "Game End",
-                    JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            SummaryScreen summaryScreen=new SummaryScreen(gameToolBar.getLifeLeft(),gameToolBar.getScore(),gameToolBar.getFruits(),gameToolBar.getLevel(),gameToolBar.getTime());
 
         }
     }
@@ -96,7 +97,7 @@ public class Game extends JFrame  implements ActionListener{
         countDownTimer.stop();
     }
     public String getTimerTime() {
-       return countDownTimer.timeLabel.getText();
+        return countDownTimer.timeLabel.getText();
     }
     public void endGame(int score){
         String name=JOptionPane.showInputDialog(null,"Enter your name:");
@@ -106,19 +107,7 @@ public class Game extends JFrame  implements ActionListener{
 
     private void initUI() {
         board=new Board(selectedBoard,this,1,null);
-        ImageIcon fast_forward_img=new ImageIcon("src\\Resources\\fast_forward.png");
-        fast_forward=new JButton("",fast_forward_img);
-        fast_forward.setBorder(BorderFactory.createEmptyBorder());
-        fast_forward.setSize(50,50);
-        fast_forward.addActionListener(this);
-        fast_forward.setFocusable(false);
-
-        board.add(fast_forward);
         add(board);
-
-        board.layout.putConstraint(SpringLayout.NORTH,fast_forward,750,SpringLayout.NORTH,getContentPane());
-        board.layout.putConstraint(SpringLayout.WEST,fast_forward,750,SpringLayout.WEST,getContentPane());
-
 
         setTitle("PAC-MAN");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -137,7 +126,7 @@ public class Game extends JFrame  implements ActionListener{
             ois.close();
             fis.close();
         }catch(Exception e){
-           this.scoresList=new ArrayList<>();
+            this.scoresList=new ArrayList<>();
         }
     }
 
@@ -155,8 +144,4 @@ public class Game extends JFrame  implements ActionListener{
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        board.fastForward();
-    }
 }
