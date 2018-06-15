@@ -15,6 +15,17 @@ public class TimerManager implements ActionListener {
     private  Timer fiveSecTimerDisaapear;
     private Timer freezeYellowGhostTimer;
     private Timer openTheCageTimer;
+    private Timer fireballTimer;
+
+    public Timer getFireballTimer() {
+        return fireballTimer;
+    }
+
+    public Timer getWatersplashTimer() {
+        return watersplashTimer;
+    }
+
+    private Timer watersplashTimer;
     private Timer timer;
     private int DELAY=40; //40=default value;
     private Board board;
@@ -32,6 +43,8 @@ public class TimerManager implements ActionListener {
         threeSecFreezePacmanTimer=new Timer(3000,this);
         openTheCageTimer=new Timer(7000,this);
         freezeYellowGhostTimer =new Timer(5000,this);
+        fireballTimer=new Timer(10000,this);
+        watersplashTimer=new Timer(4000,this);
         openTheCageTimer.start();
         this.board=board;
     }
@@ -126,7 +139,11 @@ public class TimerManager implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(openTheCageTimer))
+        if(e.getSource().equals(fireballTimer))
+            board.shootFireball();
+            else if (e.getSource().equals(watersplashTimer))
+                board.shootWatersplash();
+        else if(e.getSource().equals(openTheCageTimer))
             board.openTheGhostcage();
         else if((e.getSource().equals(timer))){
             board.callTorepaint();

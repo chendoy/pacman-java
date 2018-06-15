@@ -28,8 +28,6 @@ public class Board extends JPanel{
     private Ghost[] ghostArr;
     TimerManager timerManager;
 
-
-
     private boolean isFF=false; //is Fast Forward on?
 
     private final int maxSpeed = 6;
@@ -252,10 +250,12 @@ public class Board extends JPanel{
 
     private void initVariables() {
         timerManager=new TimerManager(this);
-        ghostArr=new Ghost[3];
+        ghostArr=new Ghost[5]; //3 ghosts+2 weapons
         ghostArr[0]=new GreenGhost(level,timerManager);
         ghostArr[1]=new YellowGhost(level,timerManager);
         ghostArr[2]=new RedGhost(level,timerManager);
+
+
         drawRandomFruits =false;
         drawFruitsForFirstTime =false;
         twoSecFlickeringTime=false;
@@ -268,8 +268,8 @@ public class Board extends JPanel{
         ghost_y = new int[ghostArr.length];
         ghost_dy = new int[ghostArr.length];
         ghostSpeed = new int[ghostArr.length];
-        dx = new int[4];
-        dy = new int[4];
+        dx = new int[6];
+        dy = new int[6];
 
 
         Color tbColor= new Color(96, 255, 6);
@@ -323,6 +323,7 @@ public class Board extends JPanel{
         }
 
 
+
         for (i = 0; i < ghostArr.length; i++) {
 
             if (ghost_x[i] % BLOCK_SIZE == 0 && ghost_y[i] % BLOCK_SIZE == 0) {
@@ -330,40 +331,61 @@ public class Board extends JPanel{
 
                 count = 0;
 
-                if ((screenData[pos] & 1) == 0 && ghost_dx[i] != 1) {
-                    dx[count] = -1;
-                    dy[count] = 0;
-                    count++;
+
+
+                if (i!=4 && i!=3 && pos<=1023 &&  (screenData[pos] & 1) == 0 && ghost_dx[i] != 1) {
+
+
+                        dx[count] = -1;
+                        dy[count] = 0;
+                        count++;
+
+
                 }
 
-                if ((screenData[pos] & 2) == 0 && ghost_dy[i] != 1) {
-                    dx[count] = 0;
-                    dy[count] = -1;
-                    count++;
+                if (i!=4 && i!=3 && pos<=1023 && (screenData[pos] & 2) == 0 && ghost_dy[i] != 1) {
+
+
+                            dx[count] = 0;
+                            dy[count] = -1;
+                            count++;
+
+
+
                 }
 
-                if ((screenData[pos] & 4) == 0 && ghost_dx[i] != -1) {
-                    dx[count] = 1;
-                    dy[count] = 0;
-                    count++;
+                if (i!=4 &&  i!=3 && pos<=1023 && (screenData[pos] & 4) == 0 && ghost_dx[i] != -1) {
+
+
+                        dx[count] = 1;
+                        dy[count] = 0;
+                        count++;
+
+
+
                 }
 
-                if ((screenData[pos] & 8) == 0 && ghost_dy[i] != -1) {
+                if (i!=4 && i!=3 && pos<=1023 && (screenData[pos] & 8) == 0 && ghost_dy[i] != -1) {
+
+
                     dx[count] = 0;
                     dy[count] = 1;
                     count++;
+
+
                 }
 
                 if (count == 0) {
 
-                    if ((screenData[pos] & 15) == 15) {
-                        ghost_dx[i] = 0;
-                        ghost_dy[i] = 0;
-                    } else {
-                        ghost_dx[i] = -ghost_dx[i];
-                        ghost_dy[i] = -ghost_dy[i];
+                    if( i!=4 && i!=3) {
+                        if ((screenData[pos] & 15) == 15) {
+                            ghost_dx[i] = 0;
+                            ghost_dy[i] = 0;
+                        } else {
+                            ghost_dx[i] = -ghost_dx[i];
+                            ghost_dy[i] = -ghost_dy[i];
+                        }
                     }
-
 
                 } else {
 
@@ -372,6 +394,7 @@ public class Board extends JPanel{
                     if (count > 3) {
                         count = 3;
                     }
+
 
                     ghost_dx[i] = dx[count];
                     ghost_dy[i] = dy[count];
@@ -384,40 +407,73 @@ public class Board extends JPanel{
 
                     pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
 
-                    if ((screenData[pos] & 32) == 32) {
+                    if (i!=3 && i!=4 && (screenData[pos] & 32) == 32) {
                         //System.out.println("up!");
                         ghost_dx[i] = 0;
                         ghost_dy[i] = -1;
                     }
 
-                    if ((screenData[pos] & 64) == 64) {
+                    if (i!=3 && i!=4 && (screenData[pos] & 64) == 64) {
                         //System.out.println("right!");
                         ghost_dx[i] = 1;
                         ghost_dy[i] = 0;
                     }
 
-                    if ((screenData[pos] & 128) == 128) {
+                    if (i!=3 && i!=4 && (screenData[pos] & 128) == 128) {
                         //System.out.println("down!");
                         ghost_dx[i] = 0;
                         ghost_dy[i] = 1;
                     }
                 }
-                if(!ghostArr[i].isghostFreezed){
+
+            if(i==4) { //fireball
+                ghost_dx[4] = ghost_dx[4];
+                ghost_dy[4] = ghost_dy[4];
+            }
+
+            pos = ghost_x[3] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[3] / BLOCK_SIZE);
+
+            if(i==3) { //fireball
+
+                ghost_dx[3] = ghost_dx[3];
+                ghost_dy[3] = ghost_dy[3];
+
+                if(pos<=1023 && (screenData[pos] & 1)==0 && dx[3]==-1) {
+                   ghostArr[3] = null;
+                   System.out.println("water disabled left");
+               }
+                if(pos<=1023 && (screenData[pos] & 2)==0 && dy[3]==-1) {
+                    ghostArr[3] = null;
+                    System.out.println("water disabled up");
+                }
+                if(pos<=1023 && (screenData[pos] & 4)==0 && dx[3]==1) {
+                    ghostArr[3] = null;
+                    System.out.println("water disabled right");
+                }
+                if(pos<=1023 && (screenData[pos] & 8)==0 && dy[3]==1) {
+                    ghostArr[3] = null;
+                    System.out.println("water disabled down");
+                }
+            }
+
+
+
+                if(ghostArr[i]!=null && !ghostArr[i].isghostFreezed){
                     ghost_x[i] = ghost_x[i] + (ghost_dx[i] * ghostSpeed[i]);
                     ghost_y[i] = ghost_y[i] + (ghost_dy[i] * ghostSpeed[i]);
                 }
 
 
-                if (i==0&&!((GreenGhost)ghostArr[i]).isGhostvisible())
+                if (i==0 &&!((GreenGhost)ghostArr[i]).isGhostvisible())
                 {
                     if(!fiveSecTimerStarted){
                         timerManager.getFiveSecTimerDisaapear().start();
                     }
                 }
-                else if(i==0&&((GreenGhost)ghostArr[i]).isGhostDying()) {
+                else if(i==0 &&((GreenGhost)ghostArr[i]).isGhostDying()) {
                     // do not paint ghost
                 }
-                else {
+                else if(ghostArr[i]!=null) {
                     drawGhost(ghostArr[i],g2d, ghost_x[i] + 1, ghost_y[i] + 1);
                 }
 
@@ -443,15 +499,19 @@ public class Board extends JPanel{
 
 
 
-        for(i=0;i<ghostArr.length;i++) {
+        for(i=0;i<3;i++) {
             pos =ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
             if(pos==1023)
                 reachedEdge[i]=true;
         }
         AllReachedEdge=true;
-        for(i=0;i<ghostArr.length;i++) {
+        for(i=0;i<3;i++) {
            if(reachedEdge[i]==false)
                AllReachedEdge=false;
+        }
+        if(AllReachedEdge) { //now it's time to load the weapons
+            timerManager.getFireballTimer().start();
+            timerManager.getWatersplashTimer().start();
         }
 
     }
@@ -1131,7 +1191,7 @@ public class Board extends JPanel{
         int dx = 1;
         int random;
 
-        for (i = 0; i < ghostArr.length; i++) {
+        for (i = 0; i < 3; i++) {
 
             ghost_y[i] = 16 * BLOCK_SIZE;
             ghost_x[i] = 16 * BLOCK_SIZE;
@@ -1147,7 +1207,12 @@ public class Board extends JPanel{
                 random = currentSpeed;
             }
 
-            ghostSpeed[i] = ((int)validSpeeds[random]);
+            ghostSpeed[0] = 3;
+            ghostSpeed[1] = 2;
+            ghostSpeed[2] = 1;
+            ghostSpeed[3] = 10;
+            ghostSpeed[4] = 10;
+
             //ghostSpeed[i] = 6;
 
         }
@@ -1220,6 +1285,29 @@ public class Board extends JPanel{
         g2d.drawImage(ii, 5, 5, this);
         Toolkit.getDefaultToolkit().sync();
         g2d.dispose();
+    }
+
+    public void shootFireball() {
+        ghostArr[4] = new Fireball(level, timerManager);
+        ghost_x[4]=ghost_x[2];
+        ghost_y[4]=ghost_y[2];
+        ghost_dx[4]=ghost_dx[2];
+        ghost_dy[4]=ghost_dy[2];
+        dx[4]=dx[2];
+        dy[4]=dy[2];
+
+        }
+
+
+    public void shootWatersplash() {
+        System.out.println("watersplash was shot!");
+        ghostArr[3] = new Watersplash(level, timerManager);
+        ghost_x[3]=ghost_x[1];
+        ghost_y[3]=ghost_y[1];
+        ghost_dx[3]=ghost_dx[1];
+        ghost_dy[3]=ghost_dy[1];
+        dx[3]=dx[1];
+        dy[3]=dy[1];
     }
 
     class TAdapter extends KeyAdapter {
