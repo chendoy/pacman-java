@@ -1,8 +1,10 @@
 package GameComponents;
 
 import GameUtilities.GameToolBar;
+import GameUtilities.TimerManager;
 import Screens.Game;
 import Screens.MainMenu;
+import Screens.SummaryScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +14,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-public class Board extends JPanel implements ActionListener {
+public class Board extends JPanel{
 
 
     public SpringLayout layout;
-    private int DELAY=40; //40=default value;
     private Dimension d;
     private final Color dotColor=new Color(192,192,0);
     private Color mazeColor;
@@ -25,6 +26,7 @@ public class Board extends JPanel implements ActionListener {
     private Image ii;
     private Pacman pacman;
     private Ghost[] ghostArr;
+    TimerManager timerManager;
 
 
 
@@ -37,7 +39,7 @@ public class Board extends JPanel implements ActionListener {
     private final int N_BLOCKS=32;
     private final int SCREEN_SIZE=N_BLOCKS*BLOCK_SIZE;
     private final int PAC_ANIM_DELAY=2;
-    
+
 
 
     boolean drawRandomFruits;
@@ -46,15 +48,6 @@ public class Board extends JPanel implements ActionListener {
     boolean twoSecFlickeringTime;
     boolean fiveSecTimerStarted;
     int flip=0;
-
-//    short[]randompositionarr;
-    private Timer tenSecTimer;
-    private Timer threeSecTimer;
-    private Timer stableTimeTimer;
-    private Timer flickeringTimeTimer;
-    private  Timer fiveSecTimerDisaapear;
-
-    private Timer openTheCageTimer;
 
     private final  Font smallFont = new Font("Helvetica", Font.BOLD, 18);
 
@@ -211,7 +204,7 @@ public class Board extends JPanel implements ActionListener {
     private final double validSpeeds[] = {1,1.5,3,4,5};
     private int currentSpeed = 3;
 
-    private Timer timer;
+
     private short[] screenData;
     private Game _game;
     private int level;
@@ -224,7 +217,7 @@ public class Board extends JPanel implements ActionListener {
         if(level!=1) {
             this.gameToolBar=gameToolBar;
         }
-
+//        this.gameToolBar=new GameToolBar(0,"0");
 
         this._game=game;
         this.level=level;
@@ -258,10 +251,11 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void initVariables() {
+        timerManager=new TimerManager(this);
         ghostArr=new Ghost[3];
-        ghostArr[0]=new GreenGhost(level);
-        ghostArr[1]=new YellowGhost(level);
-        ghostArr[2]=new RedGhost(level);
+        ghostArr[0]=new GreenGhost(level,timerManager);
+        ghostArr[1]=new YellowGhost(level,timerManager);
+        ghostArr[2]=new RedGhost(level,timerManager);
         drawRandomFruits =false;
         drawFruitsForFirstTime =false;
         twoSecFlickeringTime=false;
@@ -276,14 +270,7 @@ public class Board extends JPanel implements ActionListener {
         ghostSpeed = new int[ghostArr.length];
         dx = new int[4];
         dy = new int[4];
-        timer = new Timer(DELAY, this);
-        timer.start();
-        tenSecTimer=new Timer(0,this);
-        tenSecTimer.setInitialDelay(10000);
-        threeSecTimer=new Timer(3000,this);
-        stableTimeTimer =new Timer(3000,this);
-        flickeringTimeTimer=new Timer(2000,this);
-        fiveSecTimerDisaapear=new Timer(5000,this);
+
 
         Color tbColor= new Color(96, 255, 6);
         if(level==1){
@@ -299,13 +286,9 @@ public class Board extends JPanel implements ActionListener {
             pacman=new AngryPacman(_selectedBoard,"Angry",BLOCK_SIZE);
         }
 
-
-        openTheCageTimer=new Timer(7000,this);
-        openTheCageTimer.start();
-
     }
 
-    private void openTheGhostcage() {
+    public void openTheGhostcage() {
 
         if(!cageOpened)
         switch (_selectedBoard) {
@@ -341,6 +324,7 @@ public class Board extends JPanel implements ActionListener {
 
 
         for (i = 0; i < ghostArr.length; i++) {
+
             if (ghost_x[i] % BLOCK_SIZE == 0 && ghost_y[i] % BLOCK_SIZE == 0) {
                 pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
 
@@ -395,65 +379,68 @@ public class Board extends JPanel implements ActionListener {
 
             }
 
-            if (!AllReachedEdge) {
+                if (!AllReachedEdge) {
 
 
-                pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
+                    pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
 
-                if ((screenData[pos] & 32) == 32) {
-                    //System.out.println("up!");
-                    ghost_dx[i] = 0;
-                    ghost_dy[i] = -1;
+                    if ((screenData[pos] & 32) == 32) {
+                        //System.out.println("up!");
+                        ghost_dx[i] = 0;
+                        ghost_dy[i] = -1;
+                    }
+
+                    if ((screenData[pos] & 64) == 64) {
+                        //System.out.println("right!");
+                        ghost_dx[i] = 1;
+                        ghost_dy[i] = 0;
+                    }
+
+                    if ((screenData[pos] & 128) == 128) {
+                        //System.out.println("down!");
+                        ghost_dx[i] = 0;
+                        ghost_dy[i] = 1;
+                    }
+                }
+                if(!ghostArr[i].isghostFreezed){
+                    ghost_x[i] = ghost_x[i] + (ghost_dx[i] * ghostSpeed[i]);
+                    ghost_y[i] = ghost_y[i] + (ghost_dy[i] * ghostSpeed[i]);
                 }
 
-                if ((screenData[pos] & 64) == 64) {
-                    //System.out.println("right!");
-                    ghost_dx[i] = 1;
-                    ghost_dy[i] = 0;
+
+                if (i==0&&!((GreenGhost)ghostArr[i]).isGhostvisible())
+                {
+                    if(!fiveSecTimerStarted){
+                        timerManager.getFiveSecTimerDisaapear().start();
+                    }
                 }
-
-                if ((screenData[pos] & 128) == 128) {
-                    //System.out.println("down!");
-                    ghost_dx[i] = 0;
-                    ghost_dy[i] = 1;
-                }
-            }
-
-            ghost_x[i] = ghost_x[i] + (ghost_dx[i] * ghostSpeed[i]);
-            ghost_y[i] = ghost_y[i] + (ghost_dy[i] * ghostSpeed[i]);
-
-            if (i==0&&!((GreenGhost)ghostArr[i]).isGhostvisible())
-            {
-                if(!fiveSecTimerStarted){
-                    fiveSecTimerDisaapear.start();
-                }
-            }
-            else if(i==0&&((GreenGhost)ghostArr[i]).isGhostDying()) {
-                // do not paint ghost
-            }
-            else {
-                drawGhost(ghostArr[i],g2d, ghost_x[i] + 1, ghost_y[i] + 1);
-            }
-
-
-
-            //this function will occur on impact between ghost and pacman
-            if (pacman.getPacman_x() > (ghost_x[i] - 12) && pacman.getPacman_x() < (ghost_x[i] + 12)
-                    && pacman.getPacman_y() > (ghost_y[i] - 12) && pacman.getPacman_y() < (ghost_y[i] + 12)
-                    && inGame) {
-                if(pacman.getpacmanType().equals("Nice")) {
-                    ghostArr[i].visit((NicePacman)pacman);
-                }
-                else if(pacman.getpacmanType().equals("Defended")) {
-                    ghostArr[i].visit((DefendedPacman)pacman);
+                else if(i==0&&((GreenGhost)ghostArr[i]).isGhostDying()) {
+                    // do not paint ghost
                 }
                 else {
-                     ghostArr[i].visit((AngryPacman)pacman);
+                    drawGhost(ghostArr[i],g2d, ghost_x[i] + 1, ghost_y[i] + 1);
+                }
+
+
+
+                //this function will occur on impact between ghost and pacman
+                if (pacman.getPacman_x() > (ghost_x[i] - 12) && pacman.getPacman_x() < (ghost_x[i] + 12)
+                        && pacman.getPacman_y() > (ghost_y[i] - 12) && pacman.getPacman_y() < (ghost_y[i] + 12)
+                        && inGame) {
+                    if(pacman.getpacmanType().equals("Nice")) {
+                        ghostArr[i].visit((NicePacman)pacman);
+                    }
+                    else if(pacman.getpacmanType().equals("Defended")) {
+                        ghostArr[i].visit((DefendedPacman)pacman);
+                    }
+                    else {
+                        ghostArr[i].visit((AngryPacman)pacman);
+                    }
+
                 }
 
             }
 
-        }
 
 
         for(i=0;i<ghostArr.length;i++) {
@@ -502,8 +489,9 @@ public class Board extends JPanel implements ActionListener {
             death();
 
         } else {
-
-            movePacman();
+            if(!pacman.isPacmanFreezed()) {
+                movePacman();
+            }
             drawPacman(g2d);
 
             moveGhosts(g2d);
@@ -563,7 +551,7 @@ public class Board extends JPanel implements ActionListener {
         if (pacsLeft == 0) {
             inGame = false;
             _game.endGame(gameToolBar.getScore());
-            MainMenu menu=new MainMenu();
+            SummaryScreen summaryScreen=new SummaryScreen(pacsLeft,gameToolBar.getScore(),gameToolBar.getFruits(),level,gameToolBar.getTime());
         }
 
         continueLevel();
@@ -592,16 +580,19 @@ public class Board extends JPanel implements ActionListener {
                 //give points to energy pill
                 if (pos == 31 || pos == 0 || pos == 1023 | pos == 992) {
                     gameToolBar.addScore(50);
+                    gameToolBar.addFruits(1);
                     scored=true;
                 }
                 //pineapple score
                 else if (pos == 704 | pos == 1011) {
                     gameToolBar.addScore(100);
+                    gameToolBar.addFruits(1);
                     scored=true;
                 }
                 //apple scores
                 else if (pos == 13 || pos == 810) {
                     gameToolBar.addScore(200);
+                    gameToolBar.addFruits(1);
                     scored = true;
                 }
 
@@ -692,73 +683,90 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void drawPacmanUp(Graphics2D g2d) {
+        int x;
+        int y;
+        x=pacman.getPacman_x();
+        y=pacman.getPacman_y();
 
         switch (pacman.getPacman_Anim_Pos()) {
             case 1:
-                g2d.drawImage(pacman.get_pacman1up(), pacman.getPacman_x() + 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman1up(),x, y, this);
                 break;
             case 2:
-                g2d.drawImage(pacman.get_pacman2up(), pacman.getPacman_x()+ 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman2up(),x, y, this);
                 break;
             case 3:
-                g2d.drawImage(pacman.get_pacman3up(),  pacman.getPacman_x() + 1, pacman.getPacman_y()+ 1, this);
+                g2d.drawImage(pacman.get_pacman3up(),x, y, this);
                 break;
             default:
-                g2d.drawImage(pacman.get_pacman0up(), pacman.getPacman_x() + 1,pacman.getPacman_y()+ 1, this);
+                g2d.drawImage(pacman.get_pacman0up(),x, y, this);
                 break;
         }
     }
 
     private void drawPacmanDown(Graphics2D g2d) {
+        int x;
+        int y;
+        x=pacman.getPacman_x();
+        y=pacman.getPacman_y();
 
         switch (pacman.getPacman_Anim_Pos()) {
             case 1:
-                g2d.drawImage(pacman.get_pacman1down(),  pacman.getPacman_x() + 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman1down(),  x, y, this);
                 break;
             case 2:
-                g2d.drawImage(pacman.get_pacman2down(),  pacman.getPacman_x()+ 1, pacman.getPacman_y()+ 1, this);
+                g2d.drawImage(pacman.get_pacman2down(),x, y, this);
                 break;
             case 3:
-                g2d.drawImage(pacman.get_pacman3down(),  pacman.getPacman_x() + 1,pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman3down(),x,y, this);
                 break;
             default:
-                g2d.drawImage(pacman.getPacman0down(),  pacman.getPacman_x() + 1, pacman.getPacman_y()+ 1, this);
+                g2d.drawImage(pacman.getPacman0down(),x,y, this);
                 break;
         }
     }
 
     private void drawPacnanLeft(Graphics2D g2d) {
 
+        int x;
+        int y;
+        x=pacman.getPacman_x();
+        y=pacman.getPacman_y();
         switch (pacman.getPacman_Anim_Pos()) {
             case 1:
-                g2d.drawImage(pacman.get_pacman1left(),  pacman.getPacman_x() + 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman1left(),x,y, this);
                 break;
             case 2:
-                g2d.drawImage(pacman.get_pacman2left(),  pacman.getPacman_x() + 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman2left(),x,y, this);
                 break;
             case 3:
-                g2d.drawImage(pacman.get_pacman3left(),  pacman.getPacman_x() + 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman3left(),x,y, this);
                 break;
             default:
-                g2d.drawImage(pacman.get_pacman0left(),  pacman.getPacman_x() + 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman0left(),x,y, this);
                 break;
         }
     }
 
     private void drawPacmanRight(Graphics2D g2d) {
 
+        int x;
+        int y;
+        x=pacman.getPacman_x();
+        y=pacman.getPacman_y();
+
         switch (pacman.getPacman_Anim_Pos()) {
             case 1:
-                g2d.drawImage(pacman.get_pacman1right(), pacman.getPacman_x() + 1, pacman.getPacman_y()+ 1, this);
+                g2d.drawImage(pacman.get_pacman1right(),x,y, this);
                 break;
             case 2:
-                g2d.drawImage(pacman.get_pacman2right(),  pacman.getPacman_x()+ 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman2right(),x,y, this);
                 break;
             case 3:
-                g2d.drawImage(pacman.get_pacman3right(),  pacman.getPacman_x()+ 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman3right(),x,y, this);
                 break;
             default:
-                g2d.drawImage(pacman.get_pacman0right(),  pacman.getPacman_x() + 1, pacman.getPacman_y() + 1, this);
+                g2d.drawImage(pacman.get_pacman0right(),x,y, this);
                 break;
         }
     }
@@ -1222,22 +1230,33 @@ public class Board extends JPanel implements ActionListener {
             int key = e.getKeyCode();
 
             if (inGame) {
-                if (key == KeyEvent.VK_LEFT) {
-                    req_dx = -1;
-                    req_dy = 0;
-                } else if (key == KeyEvent.VK_RIGHT) {
-                    req_dx = 1;
-                    req_dy = 0;
-                } else if (key == KeyEvent.VK_UP) {
-                    req_dx = 0;
-                    req_dy = -1;
-                } else if (key == KeyEvent.VK_DOWN) {
-                    req_dx = 0;
-                    req_dy = 1;
-                } else if (key == KeyEvent.VK_ESCAPE ) {
-                    inGame = false;
-                    _game.stopCountTime();
+                if(!pacman.isPacmanFreezed()) {
+                    if (key == KeyEvent.VK_LEFT) {
+                        req_dx = -1;
+                        req_dy = 0;
+                    } else if (key == KeyEvent.VK_RIGHT) {
+                        req_dx = 1;
+                        req_dy = 0;
+                    } else if (key == KeyEvent.VK_UP) {
+                        req_dx = 0;
+                        req_dy = -1;
+                    } else if (key == KeyEvent.VK_DOWN) {
+                        req_dx = 0;
+                        req_dy = 1;
+                    } else if (key == KeyEvent.VK_ESCAPE ) {
+                        inGame = false;
+                        _game.stopCountTime();
+                    }
                 }
+                else {
+                    req_dx=0;
+                    req_dy=0;
+                    if(key==KeyEvent.VK_SPACE)  {
+                        inGame=false;
+                        _game.stopCountTime();
+                    }
+                }
+
 
                     }
              else {
@@ -1248,7 +1267,7 @@ public class Board extends JPanel implements ActionListener {
                         initGame();
                         _game.startCountTime();
                     }
-                    tenSecTimer.start();
+                    timerManager.getTenSecTimer().start();
                 }
                 //'b' was pressed - back to main menu
                 else if (key == 66) {
@@ -1282,44 +1301,40 @@ public class Board extends JPanel implements ActionListener {
     public void fastForward() {
         if(isFF)
         {
-            this.timer.setDelay(40);
+           timerManager.getTimer().setDelay(40);
             isFF=false;
         }
         else
         {
-            this.timer.setDelay(4);
+            timerManager.getTimer().setDelay(4);
             isFF=true;
         }
     }
-    public  void startFiveSecTimer()
+    public void callTorepaint() {
+        repaint();
+    }
+    public void setDrawFruitsForFirstTime(boolean bool)
     {
-        fiveSecTimerDisaapear.start();
+        drawFruitsForFirstTime=bool;
+    }
+    public void setThreeSecTimerTransparent(boolean bool) {
+        threeSecTranparent=bool;
+    }
+    public void setFiveSecTimerStarted(boolean bool) {
+        fiveSecTimerStarted=bool;
+    }
+    public void onFiveSecTimerInvisibleEnds() {
+        ((GreenGhost)ghostArr[0]).setGhostvisible(true);
+    }
+    public void onFreezePacManStop(){
+        pacman.unFreezePacman();
+        gameToolBar.addScore(-10);
+    }
+    public void onFreezeYellowGhostStop(){
+        ghostArr[1].unFreezeGhost();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(openTheCageTimer))
-            openTheGhostcage();
-        else if((e.getSource().equals(timer))){
-            repaint();
-        }
-        else if(e.getSource().equals(tenSecTimer))
-        {
-            drawFruitsForFirstTime =true;
-            threeSecTranparent=true;
-            tenSecTimer.stop();
-            threeSecTimer.start();
-        }
-        else if(e.getSource().equals(threeSecTimer)) {
-            threeSecTranparent=false;
-            threeSecTimer.stop();
-//            stableTimeTimer.start();
-        }
-        else if (e.getSource().equals(fiveSecTimerDisaapear)) {
-            ((GreenGhost)ghostArr[0]).setGhostvisible(true);
-            fiveSecTimerDisaapear.stop();
-            fiveSecTimerStarted=false;
-        }
+
 //        else if(e.getSource().equals(stableTimeTimer))
 //        {
 //            stableTimeTimer.stop();
@@ -1436,4 +1451,4 @@ public class Board extends JPanel implements ActionListener {
 //        }
 //        return -1;
 //    }
-}
+

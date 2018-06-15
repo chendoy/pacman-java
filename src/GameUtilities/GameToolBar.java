@@ -5,12 +5,15 @@ import java.awt.*;
 
 public class GameToolBar {
     int score;
-    String time;
+    private String time;
+    private int fruits;
 
 
-    public GameToolBar(int score, String time    ) {
+    public GameToolBar(int score, String time) {
         this.score = score;
         this.time = time;
+        this.fruits=0;
+
 
     }
 
@@ -24,6 +27,15 @@ public class GameToolBar {
 
     public void addScore(int score){
         this.score=this.score+score;
+
+    }
+
+    public int getFruits() {
+        return fruits;
+    }
+
+    public void addFruits(int fruits){
+        this.fruits=this.fruits+fruits;
 
     }
 

@@ -13,10 +13,11 @@ abstract class Pacman implements Visited{
     private int pacman_x, pacman_y, pacmand_x, pacmand_y;
     // 1.is at live, 0.dying
     protected int lifestate;
+    protected boolean isFreezed;
 
     public Pacman(int selectedboard,String pacManType,int blockSize) {
         loadImage(pacManType);
-
+        this.isFreezed=false;
         this._pacman_Anim_Count=3;
         this._Pacman_Speed=6;
         this.pacman_Anim_Pos=0;
@@ -293,6 +294,15 @@ abstract class Pacman implements Visited{
         this.pacmand_y = pacmand_y;
     }
     abstract String getpacmanType();
+    public boolean isPacmanFreezed() {
+        return isFreezed;
+    }
+    public void freezepacman() {
+        this.isFreezed=true;
+    }
+    public void unFreezePacman() {
+        this.isFreezed=false;
+    }
 
     @Override
      public void impact(Visitor visitor) {

@@ -1,5 +1,7 @@
 package GameComponents;
 
+import GameUtilities.TimerManager;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,8 +10,8 @@ public class GreenGhost extends Ghost {
     private boolean ghostvisible;
     private boolean ghostDying;
 
-    public GreenGhost(int level) {
-        super(1,3);
+    public GreenGhost(int level, TimerManager timerManager) {
+        super(1,3,timerManager);
         this.level=level;
         ghostvisible=true;
         ghostDying=false;

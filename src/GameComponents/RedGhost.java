@@ -1,12 +1,14 @@
 package GameComponents;
 
+import GameUtilities.TimerManager;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class RedGhost extends Ghost {
     private Image redGhostImage;
-    public RedGhost(int level) {
-        super(3,1);
+    public RedGhost(int level,TimerManager timerManager) {
+        super(3,1,timerManager);
         this.level=level;
         redGhostImage=new ImageIcon("src\\Resources\\red_ghost.png").getImage();
     }
@@ -24,6 +26,7 @@ public class RedGhost extends Ghost {
 
     @Override
     public void visit(AngryPacman angryPacman) {
+    angryPacman.die();
 
     }
 
