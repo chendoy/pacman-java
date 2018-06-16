@@ -86,6 +86,7 @@ public class Game extends JFrame  {
         }
         else {
             this.dispose();
+            endGame(gameToolBar.getScore());
             SummaryScreen summaryScreen=new SummaryScreen(gameToolBar.getLifeLeft(),gameToolBar.getScore(),gameToolBar.getFruits(),gameToolBar.getLevel(),gameToolBar.getTime());
 
         }

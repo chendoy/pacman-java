@@ -2,38 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a6eac23-0e55-4098-9658-fc85e4aa41fd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/AngryPacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/AngryPacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board$TAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board$TAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/DefendedPacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/DefendedPacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Fireball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Fireball.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Ghost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Ghost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/GreenGhost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/GreenGhost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/NicePacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/NicePacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Pacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/RedGhost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/RedGhost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/StaticElement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/StaticElement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Visited.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Visited.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Visitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/Watersplash.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/Watersplash.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameComponents/YellowGhost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameComponents/YellowGhost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/CountDownTimer$CountTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/CountDownTimer$CountTimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/CountDownTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/CountDownTimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/GameToolBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/GameToolBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/InfoPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/InfoPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/PacManTimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/PacManTimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/GameUtilities/TimerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/GameUtilities/TimerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/Screens/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Screens/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/Screens/HighScores.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Screens/HighScores.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/Screens/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Screens/MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Packman/Screens/SummaryScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Packman/Screens/SummaryScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameComponents/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameComponents/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameUtilities/GameToolBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameUtilities/GameToolBar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Resources/high_score.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/high_score.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Screens/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/SummaryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/SummaryScreen.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,11 +24,20 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameComponents/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="1219" column="20" lean-forward="true" selection-start-line="1219" selection-start-column="20" selection-end-line="1219" selection-end-column="20" />
+            <state relative-caret-position="71">
+              <caret line="480" column="11" lean-forward="true" selection-start-line="480" selection-start-column="11" selection-end-line="481" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="36" column="10" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -72,8 +54,8 @@
       <file leaf-file-name="GameToolBar.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameUtilities/GameToolBar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="718">
-              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="799">
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
             </state>
           </provider>
         </entry>
@@ -141,9 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>death</find>
-      <find>addSco</find>
-      <find>addSC</find>
       <find>a</find>
       <find>N_</find>
       <find>ghost</find>
@@ -171,6 +150,9 @@
       <find>pac</find>
       <find>gametoolbar.de</find>
       <find>fastf</find>
+      <find>death</find>
+      <find>if</find>
+      <find>if(i==0|</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -219,8 +201,8 @@
         <option value="$PROJECT_DIR$/src/GameComponents/Watersplash.java" />
         <option value="$PROJECT_DIR$/src/GameUtilities/TimerManager.java" />
         <option value="$PROJECT_DIR$/src/Screens/SummaryScreen.java" />
-        <option value="$PROJECT_DIR$/src/Screens/Game.java" />
         <option value="$PROJECT_DIR$/src/GameUtilities/GameToolBar.java" />
+        <option value="$PROJECT_DIR$/src/Screens/Game.java" />
         <option value="$PROJECT_DIR$/src/GameComponents/Board.java" />
       </list>
     </option>
@@ -245,40 +227,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
-              <item name="src" type="cbb8eebc:String" user="src" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
-              <item name="src" type="cbb8eebc:String" user="src" />
-              <item name="GameComponents" type="cbb8eebc:String" user="GameComponents" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
-              <item name="src" type="cbb8eebc:String" user="src" />
-              <item name="GameUtilities" type="cbb8eebc:String" user="GameUtilities" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
-              <item name="src" type="cbb8eebc:String" user="src" />
-              <item name="Screens" type="cbb8eebc:String" user="Screens" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -313,7 +262,40 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
+              <item name="src" type="cbb8eebc:String" user="src" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
+              <item name="src" type="cbb8eebc:String" user="src" />
+              <item name="GameComponents" type="cbb8eebc:String" user="GameComponents" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
+              <item name="src" type="cbb8eebc:String" user="src" />
+              <item name="GameUtilities" type="cbb8eebc:String" user="GameUtilities" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="oosd_assignment4" type="cbb8eebc:String" user="oosd_assignment4" />
+              <item name="src" type="cbb8eebc:String" user="src" />
+              <item name="Screens" type="cbb8eebc:String" user="Screens" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -446,7 +428,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="877" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -461,7 +442,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.017566688" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13988289" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -576,12 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-          <folding>
-            <element signature="e#276#277#0" />
-            <element signature="e#311#312#0" />
-            <element signature="e#355#356#0" />
-            <element signature="e#384#385#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -619,10 +594,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="e#335#336#0" />
-            <element signature="e#367#368#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -684,8 +655,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameUtilities/GameToolBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="799">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
         </state>
       </provider>
     </entry>
@@ -696,13 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2244">
-          <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameComponents/Fireball.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -710,10 +674,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Screens/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameComponents/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="1219" column="20" lean-forward="true" selection-start-line="1219" selection-start-column="20" selection-end-line="1219" selection-end-column="20" />
+        <state relative-caret-position="71">
+          <caret line="480" column="11" lean-forward="true" selection-start-line="480" selection-start-column="11" selection-end-line="481" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

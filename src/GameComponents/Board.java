@@ -478,6 +478,8 @@ public class Board extends JPanel{
 
 
                 //this function will occur on impact between ghost and pacman
+            if(i==0|i==1|i==2)
+            {
                 if (pacman.getPacman_x() > (ghost_x[i] - 12) && pacman.getPacman_x() < (ghost_x[i] + 12)
                         && pacman.getPacman_y() > (ghost_y[i] - 12) && pacman.getPacman_y() < (ghost_y[i] + 12)
                         && inGame) {
@@ -492,6 +494,13 @@ public class Board extends JPanel{
                     }
 
                 }
+
+            }
+
+
+
+
+
 
             }
 
