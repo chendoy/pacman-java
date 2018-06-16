@@ -11,9 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
 
 public class HighScores extends JFrame implements KeyListener {
@@ -64,6 +62,7 @@ public class HighScores extends JFrame implements KeyListener {
     columnNames[0]="Name";
     columnNames[1]="Score";
     String[][]score=convertScoreArrayTo2dArray(scoresList);
+    sortScoreList(score);
     JTable highScoreTable=new JTable(score,columnNames);
     highScoreTable.setRowHeight(60);
     highScoreTable.setBackground(Color.black);
@@ -76,6 +75,22 @@ public class HighScores extends JFrame implements KeyListener {
     highScoreTable.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
     getContentPane().add(highScoreTable);
 
+
+    }
+    private void sortScoreList(String [][]score){
+        for(int i=0;i<score.length;i=i+1)
+        {
+            for(int j=i+1;j<score.length;j=j+1) {
+                if(Integer.valueOf(score[j][1])>=Integer.valueOf(score[i][1])) {
+                    String tempName=score[j][0];
+                    String tempPoint=score[j][1];
+                    score[j][0]=score[i][0];
+                    score[j][1]=score[i][1];
+                    score[i][0]=tempName;
+                    score[i][1]=tempPoint;
+                }
+            }
+        }
 
     }
 
