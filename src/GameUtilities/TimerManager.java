@@ -46,6 +46,8 @@ public class TimerManager implements ActionListener {
         fireballTimer=new Timer(10000,this);
         watersplashTimer=new Timer(4000,this);
         openTheCageTimer.start();
+        watersplashTimer.start();
+        fireballTimer.start();
         this.board=board;
     }
 

@@ -3,7 +3,7 @@ package GameUtilities;
 
 import java.awt.*;
 
-public class GameToolBar {
+public class GameToolbar {
     int score;
     int level;
     int liveLeft;
@@ -11,7 +11,7 @@ public class GameToolBar {
     private int fruits;
 
 
-    public GameToolBar(int score, String time) {
+    public GameToolbar(int score, String time) {
         this.score = score;
         this.time = time;
         this.fruits=0;

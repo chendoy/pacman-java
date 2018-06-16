@@ -2,13 +2,9 @@ package Screens;
 import GameUtilities.*;
 import GameComponents.Board;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class Game extends JFrame  {
@@ -32,62 +28,62 @@ public class Game extends JFrame  {
 
     }
 
-    public void moveTonextLevel(int currentLevel,int curboard,GameToolBar gameToolBar) {
+    public void moveTonextLevel(int currentLevel, int curboard, GameToolbar gameToolbar) {
         Board b;
         if(currentLevel==1) {
-            gameToolBar.increaseLevel();
+            gameToolbar.increaseLevel();
             if(curboard==1) {
                 if(Math.random()>0.5) {
-                    b=new Board(2,this,2,gameToolBar);
+                    b=new Board(2,this,2, gameToolbar);
                     add(b);
                 }
                 else {
-                    b=new Board(3,this,2,gameToolBar);
+                    b=new Board(3,this,2, gameToolbar);
                     add(b);
                 }
             }
             else if(curboard==2) {
                 if(Math.random()>0.5) {
-                    b=new Board(1,this,2,gameToolBar);
+                    b=new Board(1,this,2, gameToolbar);
                     add(b);
                 }
                 else {
-                    b=new Board(3,this,2,gameToolBar);
+                    b=new Board(3,this,2, gameToolbar);
                     add(b);
                 }
 
             }
             else {
                 if(Math.random()>0.5) {
-                    b=new Board(2,this,2,gameToolBar);
+                    b=new Board(2,this,2, gameToolbar);
                     add(b);
                 }
                 else {
-                    b=new Board(1,this,2,gameToolBar);
+                    b=new Board(1,this,2, gameToolbar);
                     add(b);
                 }
             }
 
         }
         else if (currentLevel==2) {
-            gameToolBar.increaseLevel();
+            gameToolbar.increaseLevel();
             if(selectedBoard==1&&curboard==2||curboard==1&&selectedBoard==2) {
-                b=new Board(3,this,3,gameToolBar);
+                b=new Board(3,this,3, gameToolbar);
                 add(b);
             }
             else if(selectedBoard==1&&curboard==3||curboard==1&&selectedBoard==3) {
-                b=new Board(2,this,3,gameToolBar);
+                b=new Board(2,this,3, gameToolbar);
                 add(b);
             }
             else {
-                b=new Board(1,this,3,gameToolBar);
+                b=new Board(1,this,3, gameToolbar);
                 add(b);
             }
         }
         else {
             this.dispose();
-            endGame(gameToolBar.getScore());
-            SummaryScreen summaryScreen=new SummaryScreen(gameToolBar.getLifeLeft(),gameToolBar.getScore(),gameToolBar.getFruits(),gameToolBar.getLevel(),gameToolBar.getTime());
+            endGame(gameToolbar.getScore());
+            SummaryScreen summaryScreen=new SummaryScreen(gameToolbar.getLifeLeft(), gameToolbar.getScore(), gameToolbar.getFruits(), gameToolbar.getLevel(), gameToolbar.getTime());
 
         }
     }

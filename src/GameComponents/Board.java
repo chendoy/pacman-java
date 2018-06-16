@@ -1,6 +1,6 @@
 package GameComponents;
 
-import GameUtilities.GameToolBar;
+import GameUtilities.GameToolbar;
 import GameUtilities.TimerManager;
 import Screens.Game;
 import Screens.MainMenu;
@@ -8,8 +8,6 @@ import Screens.SummaryScreen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -69,7 +67,7 @@ public class Board extends JPanel{
     private short[] boardData;
 
     private int req_dx, req_dy, view_dx, view_dy;
-    GameToolBar gameToolBar;
+    GameToolbar gameToolbar;
 
 
     // 1 : left corner - blocked from left
@@ -112,7 +110,7 @@ public class Board extends JPanel{
             21, 1,  0,  0,  4,  21, 1,  0,  0,  4,  21, 1,  0,   0,   0, 0, 0, 0, 0,  0,  4,  21, 1,  0,  0,  4,  21, 1,  0,  0,  4,  21,
             21, 1,  0,  0,  4,  21, 9,  8,  8,  12, 21, 9,  8,   8,   8, 8, 8, 8, 8,  8,  12, 21,  9,  8,  8,  12, 21, 1,  0,  0,  4,  21,
             21, 9,  8,  8,  12, 17, 26, 26, 26, 26, 24, 26, 26,  18,  26,26,26,26,18, 26, 26, 88, 26, 26, 26, 26, 148, 9,  8,  8,  12, 149,
-            17, 26, 26, 26, 26, 20, 3,  2,  2,  2,  2,  2,  6,   21,  3, 2, 2, 6, 21, 3,  2,  2,  2,  2,  2,  6,  81, 26, 26, 26, 26, 148,
+            17, 26, 26, 26, 26, 20, 3,  2,  2,  2,  2,  2,  6,   21,  3, 2, 2, 6, 21, 3,  2,  2,  2,  2,  2,  6,  17, 26, 26, 26, 26, 148,
             21, 3,  2,  2,  6,  21, 1,  0,  0,  0,  0,  0,  4,   21,  1, 0, 0, 4, 21, 1,  0,  0,  0,  0,  0,  4,  21, 3,  2,  2,  6,  21,
             21, 1,  0,  0,  4,  21, 1,  0,  0,  0,  0,  0,  4,   21,  1, 0, 0, 4, 21, 1,  0,  0,  0,  0,  0,  4,  21, 1,  0,  0,  4,  21,
             21, 9,  8,  8,  12, 21, 9,  8,  8,  8,  8,  8,  12,  21,  1, 0, 0, 4, 21, 9,  8,  8,  8,  8,  8,  12, 21, 9,  8,  8,  12, 21,
@@ -206,14 +204,14 @@ public class Board extends JPanel{
     private int level;
     private int _selectedBoard;
 
-    public Board(int selectedBoard, Game game,int level,GameToolBar gameToolBar) {
+    public Board(int selectedBoard, Game game, int level, GameToolbar gameToolbar) {
 
         layout=new SpringLayout();
         setLayout(layout);
         if(level!=1) {
-            this.gameToolBar=gameToolBar;
+            this.gameToolbar = gameToolbar;
         }
-//        this.gameToolBar=new GameToolBar(0,"0");
+//        this.gameToolbar=new GameToolbar(0,"0");
 
         this._game=game;
         this.level=level;
@@ -273,7 +271,7 @@ public class Board extends JPanel{
         Color tbColor= new Color(96, 255, 6);
         if(level==1){
             pacman=new NicePacman(_selectedBoard,"Nice",BLOCK_SIZE);
-            gameToolBar=new GameToolBar(0,"0");
+            gameToolbar =new GameToolbar(0,"0");
         }
         else if(level==2)
         {
@@ -400,7 +398,7 @@ public class Board extends JPanel{
 
             }
 
-                if (!AllReachedEdge) {
+                if ((i>=0 & i<=2) && !reachedEdge[i]) {
 
 
                     pos = ghost_x[i] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[i] / BLOCK_SIZE);
@@ -431,26 +429,22 @@ public class Board extends JPanel{
 
             pos = ghost_x[3] / BLOCK_SIZE + N_BLOCKS * (int) (ghost_y[3] / BLOCK_SIZE);
 
-            if(i==3) { //fireball
+            if(i==3) { //watersplash
 
                 ghost_dx[3] = ghost_dx[3];
                 ghost_dy[3] = ghost_dy[3];
 
-                if(pos<=1023 && (screenData[pos] & 1)==0 && dx[3]==-1) {
+                if(pos>=0 & pos<=1023 && (screenData[pos] & 1)==0 && dx[3]==-1) {
                    ghostArr[3] = null;
-                   System.out.println("water disabled left");
                }
-                if(pos<=1023 && (screenData[pos] & 2)==0 && dy[3]==-1) {
+                if(pos>=0 & pos<=1023 && (screenData[pos] & 2)==0 && dy[3]==-1) {
                     ghostArr[3] = null;
-                    System.out.println("water disabled up");
                 }
-                if(pos<=1023 && (screenData[pos] & 4)==0 && dx[3]==1) {
+                if(pos>=0 & pos<=1023 && (screenData[pos] & 4)==0 && dx[3]==1) {
                     ghostArr[3] = null;
-                    System.out.println("water disabled right");
                 }
-                if(pos<=1023 && (screenData[pos] & 8)==0 && dy[3]==1) {
+                if(pos>=0 & pos<=1023 && (screenData[pos] & 8)==0 && dy[3]==1) {
                     ghostArr[3] = null;
-                    System.out.println("water disabled down");
                 }
             }
 
@@ -478,24 +472,23 @@ public class Board extends JPanel{
 
 
                 //this function will occur on impact between ghost and pacman
-            if(i==0|i==1|i==2)
-            {
-                if (pacman.getPacman_x() > (ghost_x[i] - 12) && pacman.getPacman_x() < (ghost_x[i] + 12)
-                        && pacman.getPacman_y() > (ghost_y[i] - 12) && pacman.getPacman_y() < (ghost_y[i] + 12)
-                        && inGame) {
-                    if(pacman.getpacmanType().equals("Nice")) {
-                        ghostArr[i].visit((NicePacman)pacman);
-                    }
-                    else if(pacman.getpacmanType().equals("Defended")) {
-                        ghostArr[i].visit((DefendedPacman)pacman);
-                    }
-                    else {
-                        ghostArr[i].visit((AngryPacman)pacman);
-                    }
+                if(ghostArr[i]!=null) {
 
+                    if (pacman.getPacman_x() > (ghost_x[i] - 12) && pacman.getPacman_x() < (ghost_x[i] + 12)
+                            && pacman.getPacman_y() > (ghost_y[i] - 12) && pacman.getPacman_y() < (ghost_y[i] + 12)
+                            && inGame) {
+                        if (pacman.getpacmanType().equals("Nice")) {
+                            ghostArr[i].visit((NicePacman) pacman);
+                        } else if (pacman.getpacmanType().equals("Defended")) {
+                            ghostArr[i].visit((DefendedPacman) pacman);
+                        } else {
+                            ghostArr[i].visit((AngryPacman) pacman);
+                        }
+
+                    }
                 }
 
-            }
+
 
 
 
@@ -511,15 +504,11 @@ public class Board extends JPanel{
             if(pos==1023)
                 reachedEdge[i]=true;
         }
-        AllReachedEdge=true;
         for(i=0;i<3;i++) {
            if(reachedEdge[i]==false)
                AllReachedEdge=false;
         }
-        if(AllReachedEdge) { //now it's time to load the weapons
-            timerManager.getFireballTimer().start();
-            timerManager.getWatersplashTimer().start();
-        }
+
 
     }
 
@@ -598,7 +587,7 @@ public class Board extends JPanel{
 
         if (finished) {
 
-            _game.moveTonextLevel(level,_selectedBoard,gameToolBar);
+            _game.moveTonextLevel(level,_selectedBoard, gameToolbar);
             this.setVisible(false);
 
 
@@ -613,12 +602,12 @@ public class Board extends JPanel{
 
     private void death() {
 
-        gameToolBar.decreaseLife();
+        gameToolbar.decreaseLife();
 
-        if (gameToolBar.getLifeLeft() == 0) {
+        if (gameToolbar.getLifeLeft() == 0) {
             inGame = false;
-            _game.endGame(gameToolBar.getScore());
-            SummaryScreen summaryScreen=new SummaryScreen(gameToolBar.getLifeLeft(),gameToolBar.getScore(),gameToolBar.getFruits(),gameToolBar.getLevel(),gameToolBar.getTime());
+            _game.endGame(gameToolbar.getScore());
+            SummaryScreen summaryScreen=new SummaryScreen(gameToolbar.getLifeLeft(), gameToolbar.getScore(), gameToolbar.getFruits(), gameToolbar.getLevel(), gameToolbar.getTime());
         }
 
         continueLevel();
@@ -646,61 +635,61 @@ public class Board extends JPanel{
                 boolean scored = false;
                 //give points to energy pill
                 if (pos == 31 || pos == 0 || pos == 1023 | pos == 992) {
-                    gameToolBar.addScore(50);
-                    gameToolBar.addFruits(1);
+                    gameToolbar.addScore(50);
+                    gameToolbar.addFruits(1);
                     scored=true;
                 }
                 //pineapple score
                 else if (pos == 704 | pos == 1011) {
-                    gameToolBar.addScore(100);
-                    gameToolBar.addFruits(1);
+                    gameToolbar.addScore(100);
+                    gameToolbar.addFruits(1);
                     scored=true;
                 }
                 //apple scores
                 else if (pos == 13 || pos == 810) {
-                    gameToolBar.addScore(200);
-                    gameToolBar.addFruits(1);
+                    gameToolbar.addScore(200);
+                    gameToolbar.addFruits(1);
                     scored = true;
                 }
 
                     if (level > 1) {
                         // pine apple scores level>1
                         if (pos == 831 | pos == 20) {
-                            gameToolBar.addScore(100);
+                            gameToolbar.addScore(100);
                             scored = true;
                         }
                         // apple score level>1
                         else if (pos == 703 || pos == 128) {
-                            gameToolBar.addScore(200);
+                            gameToolbar.addScore(200);
                             scored = true;
                         }
                         //strawberry score level>1
                         else if (pos == 130) {
-                            gameToolBar.addScore(300);
+                            gameToolbar.addScore(300);
                             scored = true;
                         }
 
                         if (level > 2) {
                             //pineapple score level>2
                             if (pos == 1001) {
-                                gameToolBar.addScore(100);
+                                gameToolbar.addScore(100);
                                 scored = true;
                             }
                             // apple score level>2
                             else if (pos == 587) {
-                                gameToolBar.addScore(200);
+                                gameToolbar.addScore(200);
                                 scored = true;
                             }
                             //strawberry score level>2
                             else if (pos == 596) {
-                                gameToolBar.addScore(300);
+                                gameToolbar.addScore(300);
                                 scored = true;
                             }
 
                         }
                     }
                     if (!scored) {
-                    gameToolBar.addScore(10);
+                    gameToolbar.addScore(10);
                 }
 
                 //if not scored yet then it is a regular pill
@@ -1202,7 +1191,6 @@ public class Board extends JPanel{
             ghost_y[i] = 16 * BLOCK_SIZE;
             ghost_x[i] = 16 * BLOCK_SIZE;
 
-            //System.out.println("x: "+ghost_x[i]+" y: "+ghost_y[i]);
 
             ghost_dy[i] = 0;
             ghost_dx[i] = dx;
@@ -1213,13 +1201,13 @@ public class Board extends JPanel{
                 random = currentSpeed;
             }
 
+            initReachedEdge(); //reset the ghost's reached end array to false
+
             ghostSpeed[0] = 3;
             ghostSpeed[1] = 2;
             ghostSpeed[2] = 1;
             ghostSpeed[3] = 10;
             ghostSpeed[4] = 10;
-
-            //ghostSpeed[i] = 6;
 
         }
 
@@ -1229,6 +1217,12 @@ public class Board extends JPanel{
         view_dy = 0;
         pacman.live();
 
+        //starting position depends on the board
+        pacman.initPos(_selectedBoard,BLOCK_SIZE);
+
+        initReachedEdge(); //resets reached edge to false to all ghosts
+
+
     }
 
     private void drawToolbar(Graphics2D g) {
@@ -1237,11 +1231,11 @@ public class Board extends JPanel{
         int i;
         g.setFont(smallFont);
         g.setColor(new Color(96, 255, 6));
-        g.drawString("Score "+String.valueOf(gameToolBar.getScore()), SCREEN_SIZE / 2 -280, SCREEN_SIZE + 25);
-        gameToolBar.setTime(_game.getTimerTime());
-        g.drawString(gameToolBar.getTime(),SCREEN_SIZE / 2 -180, SCREEN_SIZE + 25);
+        g.drawString("Score "+String.valueOf(gameToolbar.getScore()), SCREEN_SIZE / 2 -280, SCREEN_SIZE + 25);
+        gameToolbar.setTime(_game.getTimerTime());
+        g.drawString(gameToolbar.getTime(),SCREEN_SIZE / 2 -180, SCREEN_SIZE + 25);
         g.drawString(" Press 'f' for fast forward",SCREEN_SIZE /2+200 ,SCREEN_SIZE + 25);
-        for (i = 0; i < gameToolBar.getLifeLeft(); i++) {
+        for (i = 0; i < gameToolbar.getLifeLeft(); i++) {
             g.drawImage(pacman.get_pacman3left(), i * 28 +8, SCREEN_SIZE +10, this);
         }
 
@@ -1306,7 +1300,6 @@ public class Board extends JPanel{
 
 
     public void shootWatersplash() {
-        System.out.println("watersplash was shot!");
         ghostArr[3] = new Watersplash(level, timerManager);
         ghost_x[3]=ghost_x[1];
         ghost_y[3]=ghost_y[1];
@@ -1425,7 +1418,7 @@ public class Board extends JPanel{
     }
     public void onFreezePacManStop(){
         pacman.unFreezePacman();
-        gameToolBar.addScore(-10);
+        gameToolbar.addScore(-10);
     }
     public void onFreezeYellowGhostStop(){
         ghostArr[1].unFreezeGhost();

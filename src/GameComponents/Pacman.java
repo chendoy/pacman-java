@@ -304,6 +304,23 @@ abstract class Pacman implements Visited{
         this.isFreezed=false;
     }
 
+    public void initPos(int selectedboard,int blockSize) {
+        if(selectedboard==1)
+        {
+            this.pacman_x=15*blockSize;
+            this.pacman_y=12*blockSize;
+        }
+        else if(selectedboard==2) {
+            this.pacman_x=15*blockSize;
+            this.pacman_y=15*blockSize;
+        }
+        else {
+            this.pacman_x=15*blockSize;
+            this.pacman_y=11*blockSize;
+        }
+
+    }
+
     @Override
      public void impact(Visitor visitor) {
 
